@@ -3,7 +3,7 @@ name: Auto Deploy to Vercel via CLI
 on:
   push:
     branches:
-      - main # change if needed
+      - main
 
 jobs:
   deploy:
