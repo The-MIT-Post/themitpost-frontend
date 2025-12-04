@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Categories from "./components/Categories";
 import CarouselComponent from "./components/CarouselComponent";
 import FamousArticles from "./components/FamousArticles";
 import ArticlesList from "./components/ArticlesList";
@@ -22,9 +23,12 @@ const HomePage = ({ articles, famousArticleIDs, listArticleIDs }) => {
 			<Navbar />
 			<div className="app-container">
 				<Hero />
-				<CarouselComponent articles={articles.slice(0, 6)} />
-				<FamousArticles articles={articles} ids={famousArticleIDs} />
-				<ArticlesList articles={articles} ids={listArticleIDs} />
+				<Categories />
+				<div className="not-hero">
+					{/* <CarouselComponent articles={articles.slice(0, 6)} />
+					<FamousArticles articles={articles} ids={famousArticleIDs} /> */}
+					<ArticlesList articles={articles} ids={listArticleIDs} />
+				</div>
 			</div>
 			<Footer />
 		</>

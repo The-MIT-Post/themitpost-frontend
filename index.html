@@ -14,15 +14,11 @@
 		<div id="root"></div>
 		<script type="module" src="/src/main.jsx"></script>
 		<script>
-			// window.addEventListener("scroll", function () {
-			// 	const navbar = document.querySelector(".navbar");
-			// 	if (window.scrollY > 50) {
-			// 		// Adjust the scroll threshold as needed
-			// 		navbar.classList.add("scrolled");
-			// 	} else {
-			// 		navbar.classList.remove("scrolled");
-			// 	}
-			// });
+			window.addEventListener("scroll", function () {
+				const logo = document.querySelector(".navbar .navbar-brand-link img");
+				const reduction = Math.min(window.scrollY, 300);
+				logo.style.height = `calc(min(4rem, 10vw) - ${reduction / 15}px)`;
+			});
 		</script>
 	</body>
 </html>

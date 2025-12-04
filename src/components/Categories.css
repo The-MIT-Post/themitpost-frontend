@@ -1,0 +1,33 @@
+.categories {
+	position: sticky;
+	width: min(1200px, 100%);
+	margin: auto;
+	border: 1px solid gray;
+	border-top: none;
+	top: calc(min(4rem, 10vw) + 12px + 2vh);
+	z-index: 69;
+}
+
+.categories ul {
+	padding: 1rem 0;
+	display: flex;
+	list-style-type: none;
+	justify-content: space-evenly;
+	text-transform: uppercase;
+	background-color: rgba(18, 18, 18, 0.8);
+	backdrop-filter: blur(10px);
+}
+
+.category {
+	transition: color 0.3s;
+}
+
+.category:hover {
+	color: #f06739;
+}
+
+@media screen and (max-width: 960px) {
+	.categories {
+		display: none;
+	}
+}

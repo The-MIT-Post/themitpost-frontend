@@ -31,107 +31,10 @@ p {
 }
 
 /* App Container */
-.app-container {
+.not-hero {
 	max-width: 1200px;
 	margin: auto;
-	padding: 20px;
-}
-
-/* Navbar */
-.navbar {
-	padding: 15vh;
-	padding-top: 1vh;
-	padding-bottom: 1vh;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: transparent;
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	transition: background-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
-	background-color: rgba(10, 10, 10, 0.8); /* Semi-transparent white background */
-	backdrop-filter: blur(10px); /* Frosted glass effect */
-}
-
-.navbar-brand {
-	font-size: 50px;
-	font-weight: bold;
-	color: rgb(230, 230, 230);
-	transition: color 0.3s ease;
-	letter-spacing: -1px;
-}
-
-.navbar-links {
-	display: flex;
-	list-style-type: none;
-	background: none;
-	border: none;
-	font: inherit;
-	cursor: pointer;
-	padding: 0;
-	color: inherit;
-	text-decoration: none;
-	/* padding-top: 2rem; */
-}
-
-.navbar-link {
-	margin-left: 20px;
-	font-size: 22px;
-	color: #f5f5f5;
-	transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-link:hover {
-	color: #f06739;
-	transform: translateY(-2px);
-}
-
-.navbar-brand-link {
-	color: #f06739;
-	text-decoration: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 1rem 0;
-}
-
-.navbar-brand-link img {
-	height: 4rem;
-}
-
-.navbar-brand-link:hover {
-	color: #f3440a;
-}
-
-/* Hero Section */
-.hero {
-	text-align: center;
-	padding: 22vh 0;
-	color: #f06739;
-	border-radius: 10px;
-	margin: 20px 0;
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-}
-
-/* Hero Title with Glow/Neon Effect */
-.hero-title {
-	font-size: 80px;
-	font-weight: 550;
-	color: #f0f0f0;
-	position: relative;
-	z-index: 2;
-}
-
-/* Hero Subtitle with Glow/Neon Effect */
-.hero-subtitle {
-	font-size: 27px;
-	color: #f0f0f0;
-	margin-top: 10px;
-	position: relative;
-	z-index: 2;
+	padding: 4rem 0 0;
 }
 
 /* Carousel Section */
@@ -291,7 +194,7 @@ p {
 }
 
 .articles-list-image {
-	width: 120px;
+	width: 300px;
 	height: auto;
 	margin-right: 20px;
 	border-radius: 10px;

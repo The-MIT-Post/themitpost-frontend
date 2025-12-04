@@ -33,7 +33,7 @@ const ArticlesList = ({ articles }) => {
 
 	return (
 		<section id="all-articles" className="articles-list">
-			<h2 className="section-title">All Articles</h2>
+			{/* <h2 className="section-title">All Articles</h2> */}
 			{currentArticles.map((article) => (
 				<div key={article._id} className="articles-list-card">
 					<img
@@ -44,7 +44,9 @@ const ArticlesList = ({ articles }) => {
 					/>
 					<div className="articles-list-content">
 						<h3>{article.title}</h3>
-						<div className="articles-list-sample">{parse(article.content.slice(0, 100))}</div>
+						<div className="articles-list-sample">
+							{parse(article.content.slice(0, 400).trim() + "...")}
+						</div>
 						<p className="articles-list-meta">
 							By {article.creator} | {new Date(article.pubDate).toLocaleDateString()}
 						</p>

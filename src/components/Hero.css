@@ -1,17 +1,38 @@
 .hero {
+	padding: 10vw min(4rem, 7vw);
+	color: #f06739;
+	background-color: #00000055;
+	background-blend-mode: darken;
+	background-image: url("/Home_Banner.jpg");
+	background-size: cover;
 	position: relative;
-	text-align: center;
-	padding: 150px 20px;
-	background-color: transparent;
-	margin: 20px 0;
 	overflow: hidden;
+	width: 100%;
+}
+
+.hero-title {
+	font-size: min(5rem, 10vw);
+	font-weight: 550;
+	color: #f0f0f0;
+	position: relative;
+	z-index: 2;
 }
 
 .hero-subtitle {
+	font-family: "Times New Roman", Times, serif;
 	background-color: transparent;
-	font-size: 24px;
+	font-size: min(1.7rem, 5vw);
 	color: #f0f0f0;
-	margin-top: 10px;
 	position: relative;
 	z-index: 2;
+}
+
+p.hero-subtitle i {
+	font-family: "Times New Roman", Times, serif;
+}
+
+@media screen and (max-width: 960px) {
+	.hero {
+		text-align: center;
+	}
 }
