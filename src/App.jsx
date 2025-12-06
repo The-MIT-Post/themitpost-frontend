@@ -27,13 +27,13 @@ const HomePage = ({ articles, famousArticleIDs, listArticleIDs }) => {
 				<Hero />
 				<Categories />
 				<div className="not-hero">
-					<div>
+					<div className="dabba-left-parent">
 						<DabbaLeft />
 					</div>
 					{/* <CarouselComponent articles={articles.slice(0, 6)} />
 					<FamousArticles articles={articles} ids={famousArticleIDs} /> */}
 					<ArticlesList articles={articles} ids={listArticleIDs} />
-					<div>
+					<div className="dabba-right-parent">
 						<DabbaRight />
 					</div>
 				</div>
