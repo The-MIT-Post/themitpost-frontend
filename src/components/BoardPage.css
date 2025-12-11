@@ -1,0 +1,62 @@
+.board-page {
+  background-color: transparent;
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(2px);
+  margin: 1rem 3rem;
+  border-radius: 0.7rem;
+}
+
+.board-page h2 {
+  font-size: 3rem;
+  text-align: center;
+  color: #f06739;
+  border-bottom: 2.5px solid white;
+  margin: 2rem 5rem;
+  padding-top: 3rem;
+}
+
+.board-page h3 {
+  font-size: 2rem;
+  text-align: center;
+  color: #f06739;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.board-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.member-card {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: 0.3s ease;
+  width: 20vw;
+  /* margin: 1rem;
+  background-color: transparent;
+  background-color: rgba(64, 64, 64, 0.8);
+  backdrop-filter: blur(2px); */
+}
+
+.member-card img {
+  width: 13vw;
+  height: 13vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1rem;
+}
+
+.member-card p {
+  font-size: 1.3rem;
+  /* color: ; */
+}
+
+.member-card h4 {
+  font-weight: 400;
+}

@@ -1,5 +1,6 @@
 // components/DabbaRight.js
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Dabba.css";
 
 const DabbaRight = () => {
@@ -9,28 +10,30 @@ const DabbaRight = () => {
         <h2>About</h2>
         <ul>
           <li className="category">About Us</li>
-          <li className="category">The Board of 2025-26</li>
+          <li className="category">
+            <Link to="/board">The Board of 2025-26</Link>
+          </li>
           <li className="category">From the Editor's Desk</li>
         </ul>
       </section>
       <section className="social-media">
         <a
-          class="icon instagram"
+          className="icon instagram"
           target="_blank"
           href="https://www.instagram.com/mit.post/?next=%2F&hl=en"
         ></a>
         <a
-          class="icon linkedin"
+          className="icon linkedin"
           target="_blank"
           href="https://www.linkedin.com/company/themitpost/"
         ></a>
         <a
-          class="icon spotify"
+          className="icon spotify"
           target="_blank"
           href="https://open.spotify.com/user/lu00lx0xzwbjohh4ye9h4nfsz?si=1c6dc1763fa94dfa"
         ></a>
         <a
-          class="icon facebook"
+          className="icon facebook"
           target="_blank"
           href="https://www.facebook.com/themitpost/"
         ></a>
