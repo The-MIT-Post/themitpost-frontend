@@ -5,6 +5,29 @@ import "./index.css";
 import AppRouter from "./routes/AppRouter";
 
 const App = () => {
+	useEffect(() => {
+		const hasVisited = sessionStorage.getItem("visited");
+
+		// If the user has not been counted this session
+		if (!hasVisited) {
+			// Hit backend
+			console.log("/visit endpoint hit");
+			fetch(`${import.meta.env.VITE_API_URL}/api/visit`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+			})
+				.then(() => {
+					// Mark this session as counted
+					sessionStorage.setItem("visited", "true");
+				})
+				.catch((err) => {
+					console.error("Visit logging failed:", err);
+				});
+		} else {
+			console.log("Already visited");
+		}
+	}, []);
+
 	const [articles, setArticles] = useState([]);
 	const { currentUser } = useAuth(); // Now this will work properly
 	const [loading, setLoading] = useState(true);
