@@ -13,7 +13,7 @@ const FromTheEditorsDesk = () => {
       <Navbar />
 
       <div className="app-container editors-desk-container">
-        <h2>From The Editors Desk</h2>
+        <h2>From the Editors Desk</h2>
         <article>
           <p>
             In our daily lives, we often speak of equality and the importance of
@@ -25,7 +25,7 @@ const FromTheEditorsDesk = () => {
             and the fear of being alone and away from the herd has likely
             influenced our conformity.
           </p>
-          <img src="/from-the-editors-desk/image3.JPG" alt="image3" />
+          <img src="/from-the-editors-desk/image3.webp" alt="image3" />
           <p>
             Like parrots, we learn the ability to speak but rarely have a voice
             of our own. We accept things as they are without question and parrot
@@ -35,14 +35,14 @@ const FromTheEditorsDesk = () => {
             free will, the intrinsic ability to choose and voice our opinions is
             what holds society together and accountable.
           </p>
-          <img src="/from-the-editors-desk/image1.JPG" alt="image1" />
+          <img src="/from-the-editors-desk/image1.webp" alt="image1" />
           <p>
             Like iguanas, we blend into our surroundings to protect our true
             selves from the harsh and judgmental eyes of society. Escaping this
             moment of embarrassment eases us into a false sense of security, yet
             it ultimately curtails our freedom.
           </p>
-          <img src="/from-the-editors-desk/image2.JPG" alt="image2" />
+          <img src="/from-the-editors-desk/image2.webp" alt="image2" />
           <p>
             People are creatures of habit, so used to things that they seldom
             want to change. In this society, to break from the pattern is to be
