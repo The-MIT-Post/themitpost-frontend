@@ -179,7 +179,7 @@ const Navbar = () => {
 										<li className="sidebar-link">2022</li>
 									</ul>
 								</li>
-								<li className={`sidebar-item ${openStates[3] ? "ddown-visible" : ""}`}>
+								<li className={`sidebar-item ${openStates[4] ? "ddown-visible" : ""}`}>
 									<div className="sidebar-category" onClick={() => toggleItem(4)}>
 										Newsletters &#9662;
 									</div>

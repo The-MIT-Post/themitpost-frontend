@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import Loader from "./components/Loader";
-import "./index.css";
 import AppRouter from "./routes/AppRouter";
 
 const App = () => {
 	useEffect(() => {
 		const hasVisited = sessionStorage.getItem("visited");
 
-		// If the user has not been counted this session
 		if (!hasVisited) {
-			// Hit backend
-			console.log("/visit endpoint hit");
 			fetch(`${import.meta.env.VITE_API_URL}/api/visit`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 			})
 				.then(() => {
-					// Mark this session as counted
 					sessionStorage.setItem("visited", "true");
 				})
 				.catch((err) => {
@@ -29,12 +24,12 @@ const App = () => {
 	}, []);
 
 	const [articles, setArticles] = useState([]);
-	const { currentUser } = useAuth(); // Now this will work properly
+	const { currentUser } = useAuth();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchArticles = async () => {
-			setLoading(true); // Set loading to true before fetching
+			setLoading(true);
 			try {
 				const headers = {};
 				if (currentUser) {
@@ -53,7 +48,7 @@ const App = () => {
 			} catch (error) {
 				console.error("Error fetching articles:", error);
 			} finally {
-				setLoading(false); // Set loading to false once the fetch is done (whether successful or not)
+				setLoading(false);
 			}
 		};
 
@@ -62,7 +57,7 @@ const App = () => {
 
 	return (
 		<>
-			{loading && <Loader />} {/* Show the loader only when loading */}
+			{loading && <Loader />}
 			<AppRouter articles={articles} />
 		</>
 	);
