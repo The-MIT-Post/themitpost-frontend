@@ -4,37 +4,43 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import "./ArticlesList.css";
 
+function getSnippet(htmlString, maxChars = 350) {
+	const tempDiv = document.createElement("div");
+	tempDiv.innerHTML = htmlString;
+
+	let text = tempDiv.innerText || tempDiv.textContent || "";
+
+	if (text.length > maxChars) {
+		text = text.slice(0, maxChars) + "...";
+	}
+
+	return text;
+}
+
 const ArticlesList = ({ articles }) => {
 	const fallbackImage = "/test.jpg";
 
-	// Pagination state
 	const [currentPage, setCurrentPage] = useState(1);
 	const articlesPerPage = 10;
 
-	// Reverse articles order
 	const reversedArticles = articles;
 
-	// Calculate the articles to display on the current page
 	const indexOfLastArticle = currentPage * articlesPerPage;
 	const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 	const currentArticles = reversedArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
-	// Calculate total pages
 	const totalPages = Math.ceil(reversedArticles.length / articlesPerPage);
 
-	// Handle page change
 	const handlePageChange = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
 
-	// Generate pagination numbers dynamically
 	const generatePaginationNumbers = (totalpages) => {
 		return Array.from({ length: totalPages }, (_, index) => index + 1);
 	};
 
 	return (
 		<section id="all-articles" className="articles-list">
-			{/* <h2 className="section-title">All Articles</h2> */}
 			{currentArticles.map((article) => (
 				<div key={article._id} className="articles-list-card">
 					<img
@@ -45,9 +51,7 @@ const ArticlesList = ({ articles }) => {
 					/>
 					<div className="articles-list-content">
 						<h3>{article.title}</h3>
-						<div className="articles-list-sample">
-							{parse(article.content.slice(0, 400).trim() + "...")}
-						</div>
+						<div className="articles-list-sample">{parse(getSnippet(article.content, 350))}</div>
 						<div className="bottom-container">
 							<p className="articles-list-meta">
 								By {article.creator} | {new Date(article.pubDate).toLocaleDateString()}
@@ -60,7 +64,6 @@ const ArticlesList = ({ articles }) => {
 				</div>
 			))}
 
-			{/* Pagination Bar */}
 			<div className="pagination-bar">
 				{generatePaginationNumbers().map((pageNumber, index) =>
 					typeof pageNumber === "number" ? (
