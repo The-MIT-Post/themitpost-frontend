@@ -9,10 +9,10 @@ const Categories = () => {
 				<li className="category">Campus</li>
 				<li className="category">Arts & Culture</li>
 				<li className="category">Science & Technology</li>
-				<li className="category">News</li>
-				<li className="category">Interviews</li>
-				<li className="category">Notices</li>
+				<li className="category">World</li>
 				<li className="category">Media</li>
+				<li className="category">Notices</li>
+				<li className="category">FAQ</li>
 			</ul>
 		</nav>
 	);
