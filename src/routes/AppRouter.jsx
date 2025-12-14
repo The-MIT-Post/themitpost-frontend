@@ -8,6 +8,8 @@ import BoardPage from "../components/BoardPage";
 import BoardMembers from "../components/BoardMembers";
 import SubboardMembers from "../components/SubboardMembers";
 import Login from "../components/Login";
+
+import AdminLayout from "../components/AdminLayout";
 import AdminDashboard from "../components/AdminDashboard";
 import AdminArticlesList from "../components/AdminArticlesList";
 import EditArticle from "../components/EditArticle";
@@ -16,6 +18,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 const AppRouter = ({ articles }) => {
   return (
     <Routes>
+      {/* Public routes */}
       <Route path="/" element={<HomePage articles={articles} />} />
       <Route
         path="/articles/:id"
@@ -26,32 +29,24 @@ const AppRouter = ({ articles }) => {
       <Route path="/board" element={<BoardPage />} />
       <Route path="/board/members" element={<BoardMembers />} />
       <Route path="/board/subboard" element={<SubboardMembers />} />
-
       <Route path="/login" element={<Login />} />
+
+      {/* Admin routes (protected + layout) */}
       <Route
-        path="/admin/"
+        path="/admin"
         element={
           <ProtectedRoute>
-            <AdminDashboard articles={articles} />
+            <AdminLayout />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path="/admin/articles"
-        element={
-          <ProtectedRoute>
-            <AdminArticlesList articles={articles} />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/edit/:id"
-        element={
-          <ProtectedRoute>
-            <EditArticle />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route path="new" element={<AdminDashboard articles={articles} />} />
+        <Route
+          path="modify"
+          element={<AdminArticlesList articles={articles} />}
+        />
+        <Route path="edit/:id" element={<EditArticle />} />
+      </Route>
     </Routes>
   );
 };

@@ -88,17 +88,9 @@ const Navbar = () => {
         <ul className="navbar-links">
           <li>
             {currentUser ? (
-              <button
-                onClick={logout}
-                className="navbar-link"
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                Logout ({currentUser.username})
-              </button>
+              <Link to="/admin/new" className="navbar-link">
+                Admin Dashboard
+              </Link>
             ) : (
               <Link to="/login" className="navbar-link">
                 Login
