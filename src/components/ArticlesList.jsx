@@ -44,7 +44,7 @@ const ArticlesList = ({ articles }) => {
 			{currentArticles.map((article) => (
 				<div key={article._id} className="articles-list-card">
 					<img
-						src={article.link || fallbackImage}
+						src={fallbackImage}
 						alt={article.title}
 						onError={(e) => (e.target.src = fallbackImage)}
 						className="articles-list-image"
