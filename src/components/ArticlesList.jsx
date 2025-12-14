@@ -4,19 +4,6 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import "./ArticlesList.css";
 
-function getSnippet(htmlString, maxChars = 350) {
-	const tempDiv = document.createElement("div");
-	tempDiv.innerHTML = htmlString;
-
-	let text = tempDiv.innerText || tempDiv.textContent || "";
-
-	if (text.length > maxChars) {
-		text = text.slice(0, maxChars) + "...";
-	}
-
-	return text;
-}
-
 const ArticlesList = ({ articles }) => {
 	const fallbackImage = "/test.jpg";
 
@@ -51,7 +38,7 @@ const ArticlesList = ({ articles }) => {
 					/>
 					<div className="articles-list-content">
 						<h3>{article.title}</h3>
-						<div className="articles-list-sample">{parse(getSnippet(article.content, 350))}</div>
+						<div className="articles-list-sample">{article.summary}</div>
 						<div className="bottom-container">
 							<p className="articles-list-meta">
 								By {article.creator} | {new Date(article.pubDate).toLocaleDateString()}

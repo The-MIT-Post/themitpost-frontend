@@ -16,6 +16,12 @@
 }
 
 /* General Styles */
+html,
+body {
+	width: 100%;
+	overflow-x: clip;
+}
+
 body {
 	margin: 0;
 	padding: 0;
