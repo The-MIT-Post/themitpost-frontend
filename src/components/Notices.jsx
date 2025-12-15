@@ -15,6 +15,11 @@ const Notices = () => {
     }
   }, []);
 
+  const formatNoticeName = (name) => {
+    const nameWithoutExt = name.replace(/\.[^/.]+$/, "");
+    return nameWithoutExt.replace(/-/g, " ");
+  };
+
   return (
     <>
       <RotatingCircle />
@@ -25,15 +30,21 @@ const Notices = () => {
         {notices.length === 0 ? (
           <p>No notices yet</p>
         ) : (
-          <ul className="notices-list">
+          <div className="notices-list">
             {notices.map((notice, index) => (
-              <li key={index} className="notice-item">
-                <a href={notice.data} target="_blank">
-                  {notice.name}
-                </a>
-              </li>
+              <div key={index} className="notice-item">
+                <h4>{formatNoticeName(notice.name)}</h4>
+                <iframe
+                  src={`${notice.data}#toolbar=0&navpanes=0&scrollbar=1`}
+                  title={notice.name}
+                  style={{
+                    border: "1px solid #000000ff",
+                    borderRadius: "0.2rem",
+                  }}
+                />
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
       <BackButton />

@@ -1,8 +1,9 @@
 .notices-container {
-  max-width: 60vw;
+  width: max(60%, 300px);
   margin: 0.5rem auto;
-  padding: 0 15px;
+  padding: 0 0.5rem;
   text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .notices-container h1 {
@@ -10,24 +11,33 @@
 }
 
 .notices-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .notice-item {
-  margin-bottom: 0.5rem;
+  background-color: #282828;
   border-radius: 6px;
-  text-align: left;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.notice-item a {
-  text-decoration: none;
+.notice-item h4 {
+  margin: 0 0 0.5rem 0;
   color: #f06739;
-  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
-.notice-item a:hover {
-  text-decoration: underline;
-  color: #b8431c;
+.notice-item iframe {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid #ccc;
+  border-radius: 0.2rem;
+}
+
+.pdfViewer .thumbnailView,
+.thumbnailView {
+  display: none !important;
 }
