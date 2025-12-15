@@ -1,21 +1,29 @@
 // components/Categories.js
 import React from "react";
 import "./Categories.css";
+import { Link } from "react-router-dom";
 
-const Categories = () => {
+const categories = ["Campus", "Arts & Culture", "Science & Technology", "World", "Media", "FAQ"];
+
+function Categories() {
 	return (
 		<nav className="categories">
 			<ul>
-				<li className="category">Campus</li>
-				<li className="category">Arts & Culture</li>
-				<li className="category">Science & Technology</li>
-				<li className="category">World</li>
-				<li className="category">Media</li>
-				<li className="category">Notices</li>
-				<li className="category">FAQ</li>
+				{categories.map((category) => {
+					const params = new URLSearchParams();
+					params.set("category", category);
+
+					return (
+						<li key={category}>
+							<Link to={`/?${params.toString()}`} className="category">
+								{category}
+							</Link>
+						</li>
+					);
+				})}
 			</ul>
 		</nav>
 	);
-};
+}
 
 export default Categories;

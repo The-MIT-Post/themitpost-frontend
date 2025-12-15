@@ -20,8 +20,6 @@ const HomePage = ({ articles }) => {
 					<div className="dabba-left-parent">
 						<DabbaLeft />
 					</div>
-					{/* <CarouselComponent articles={articles.slice(0, 6)} />
-                    <FamousArticles articles={articles} ids={famousArticleIDs} /> */}
 					<ArticlesList articles={articles} />
 					<div className="dabba-right-parent">
 						<DabbaRight />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Loader from "./components/Loader";
 import AppRouter from "./routes/AppRouter";
@@ -26,6 +27,7 @@ const App = () => {
 	const [articles, setArticles] = useState([]);
 	const { currentUser } = useAuth();
 	const [loading, setLoading] = useState(true);
+	const [searchParams] = useSearchParams();
 
 	useEffect(() => {
 		const fetchArticles = async () => {
@@ -36,15 +38,18 @@ const App = () => {
 					headers["Authorization"] = `Bearer ${currentUser.token}`;
 				}
 
-				const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles`, {
-					headers,
+				const url = new URL(`${import.meta.env.VITE_API_URL}/api/articles`);
+
+				searchParams.forEach((value, key) => {
+					url.searchParams.append(key, value);
 				});
+
+				const response = await fetch(url.toString(), { headers });
 
 				if (!response.ok) throw new Error("Failed to fetch articles");
 
 				const data = await response.json();
-				const sortedArticles = data.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-				setArticles(sortedArticles);
+				setArticles(data);
 			} catch (error) {
 				console.error("Error fetching articles:", error);
 			} finally {
@@ -53,7 +58,7 @@ const App = () => {
 		};
 
 		fetchArticles();
-	}, [currentUser]);
+	}, [currentUser, searchParams]);
 
 	return (
 		<>
