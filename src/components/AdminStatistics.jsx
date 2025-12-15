@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./AdminStatistics.css";
+import { useAuth } from "../context/AuthContext";
 
 const AdminStatistics = () => {
 	const [todayVisits, setTodayVisits] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+	const { currentUser } = useAuth();
 
 	useEffect(() => {
 		fetchTodayVisits();
@@ -20,7 +22,8 @@ const AdminStatistics = () => {
 			const res = await fetch(
 				`${import.meta.env.VITE_API_URL}/api/visit`,
 				{
-					headers,
+					method: "GET",
+					headers: headers,
 				}
 			);
 			const data = await res.json();
