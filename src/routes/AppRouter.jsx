@@ -14,6 +14,7 @@ import AdminLayout from "../components/AdminLayout";
 import AdminDashboard from "../components/AdminDashboard";
 import AdminArticlesList from "../components/AdminArticlesList";
 import EditArticle from "../components/EditArticle";
+import UploadNotices from "../components/UploadNotices";
 import AdminStatistics from "../components/AdminStatistics";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -50,6 +51,7 @@ const AppRouter = ({ articles }) => {
         />
         <Route path="edit/:id" element={<EditArticle />} />
         <Route path="statistics" element={<AdminStatistics />} />
+        <Route path="upload-notice" element={<UploadNotices />} />
       </Route>
     </Routes>
   );

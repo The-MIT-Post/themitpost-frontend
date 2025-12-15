@@ -5,8 +5,6 @@ const boardData = [
   { name: "Kushal Bayaskar", position: "Editor-In-Chief" },
   { name: "Udita Kumari", position: "Managing Editor" },
   { name: "Akshat Aggarwal", position: "Writing & PAV Head" },
-  { name: "Aastha Sharma", position: "Art Head" },
-  { name: "Ojas Gupta", position: "Public Relations Head" },
   { name: "Shubham Sharma", position: "Social Media & Graphic Design Head" },
   { name: "Aditi Rishiraj", position: "Web Development Head" },
 ];

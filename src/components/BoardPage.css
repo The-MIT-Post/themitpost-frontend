@@ -32,25 +32,26 @@
   margin-bottom: 2rem;
 }
 
-.subboard .member-card img {
-  width: 11vw;
-  height: 11vw;
-}
-
 .member-card {
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
   transition: 0.3s ease;
   width: 20vw;
+  min-height: 350px;
 }
 
 .member-card img {
-  width: 13vw;
-  height: 13vw;
+  width: max(13vw, 70px);
+  height: max(13vw, 70px);
   border-radius: 50%;
   object-fit: cover;
   margin: 1rem;
+}
+
+.subboard .member-card img {
+  width: max(11vw, 70px);
+  height: max(11vw, 70px);
 }
 
 .member-card p {
@@ -62,7 +63,7 @@
   font-size: min(1rem, 2.7vw);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .board-page {
     margin: 0.2rem 0.5rem;
   }
@@ -73,8 +74,10 @@
 
   .member-card {
     display: flex;
-    width: 77%;
+    width: 100%;
     justify-content: space-between;
+    min-height: initial;
+    padding: 1rem 0.2rem;
   }
 
   .member-card div {
@@ -83,10 +86,5 @@
 
   .member-card:nth-child(even) {
     flex-direction: row-reverse;
-  }
-
-  .member-card img {
-    min-width: 20vw;
-    height: 20vw;
   }
 }

@@ -1,0 +1,33 @@
+.notices-container {
+  max-width: 60vw;
+  margin: 0.5rem auto;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.notices-container h1 {
+  margin-bottom: 1rem;
+}
+
+.notices-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notice-item {
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.notice-item a {
+  text-decoration: none;
+  color: #f06739;
+  transition: all 0.2s ease-in-out;
+}
+
+.notice-item a:hover {
+  text-decoration: underline;
+  color: #b8431c;
+}

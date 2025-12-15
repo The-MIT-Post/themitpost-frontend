@@ -1,0 +1,103 @@
+.mainContent {
+  width: 65vw;
+}
+.upload-notice-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: gray;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid gray;
+  font-size: min(1rem, 3.5vw);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="file"]:focus {
+  outline: none;
+}
+
+.btn-submit {
+  padding: 1rem 1.5rem;
+  color: #f06739;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: initial;
+  border: 1px solid #f06739;
+  cursor: pointer;
+  transition: 0.3s;
+  width: fit-content;
+  margin-bottom: 2rem;
+  display: flex;
+  align-self: center;
+}
+
+.btn-submit:hover {
+  color: #c04319;
+}
+
+.message {
+  color: rgb(74, 255, 74);
+  font-weight: 500;
+  text-align: center;
+}
+
+.uploaded-files {
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.uploaded-files h3 {
+  color: #e6e6e6;
+}
+
+.uploaded-files ul {
+  list-style: none;
+  padding: 0;
+}
+
+.uploaded-files li {
+  margin-bottom: 1rem;
+  background-color: none;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.uploaded-files a {
+  text-decoration: none;
+  color: #f06739;
+  font-weight: 500;
+}
+
+.uploaded-files a:hover {
+  color: #b64019;
+}
+
+.uploaded-files .delete-btn {
+  color: #ff0000;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  background-color: #ffd2d2;
+  transition: background-color 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.uploaded-files .delete-btn:hover {
+  background-color: rgb(255, 153, 153);
+}

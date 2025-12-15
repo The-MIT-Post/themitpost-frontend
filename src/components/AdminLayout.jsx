@@ -40,6 +40,18 @@ const AdminLayout = () => {
             <li>
               <Link
                 className={`nav-link ${
+                  location.pathname.includes("/admin/upload-notice")
+                    ? "active"
+                    : ""
+                }`}
+                to="/admin/upload-notice"
+              >
+                Upload Notices
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`nav-link ${
                   location.pathname.includes("/admin/statistics")
                     ? "active"
                     : ""
