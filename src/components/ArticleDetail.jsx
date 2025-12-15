@@ -19,19 +19,19 @@ const ArticleDetail = ({ articles }) => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        // Fetch the specific article
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/articles/${id}`
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`);
         const data = await response.json();
         setArticle(data);
 
-        // Get 3 random articles for suggestions
+        const views_res = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}/views`, {
+          method: "POST",
+        });
+
+        if (!views_res.ok) throw new Error("Failed to update views");
+
         if (articles.length > 0) {
           const filtered = articles.filter((a) => a._id !== id);
-          const randomArticles = filtered
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
+          const randomArticles = filtered.sort(() => 0.5 - Math.random()).slice(0, 3);
           setSuggestedArticles(randomArticles);
         }
       } catch (error) {
@@ -70,9 +70,7 @@ const ArticleDetail = ({ articles }) => {
           <div className="article-header">
             <h1 className="article-title">{article.title}</h1>
             <div className="article-meta">
-              <span className="article-date">
-                {new Date(article.pubDate).toLocaleDateString()}
-              </span>
+              <span className="article-date">{new Date(article.pubDate).toLocaleDateString()}</span>
               <span className="article-views">
                 {article.views}
                 <svg
@@ -80,8 +78,7 @@ const ArticleDetail = ({ articles }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 122.88 68.18"
                   width="20px"
-                  height="20px"
-                >
+                  height="20px">
                   <title>view</title>
                   <path
                     class="cls-1"
@@ -104,18 +101,11 @@ const ArticleDetail = ({ articles }) => {
           <div className="famous-articles-grid">
             {suggestedArticles.map((article) => (
               <div key={article._id} className="card">
-                <img
-                  src={fallbackImage}
-                  alt={article.title}
-                  className="card-image"
-                />
+                <img src={fallbackImage} alt={article.title} className="card-image" />
                 <div className="card__content">
                   <p className="card__title">{article.title}</p>
                   <p className="card__description">{article.summary}</p>
-                  <Link
-                    to={`/articles/${article._id}`}
-                    className="read-more-button"
-                  >
+                  <Link to={`/articles/${article._id}`} className="read-more-button">
                     Read More
                   </Link>
                 </div>
