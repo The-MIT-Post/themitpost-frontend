@@ -1,7 +1,7 @@
 // components/DabbaLeft.js
-import React from 'react';
-import './Dabba.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./Dabba.css";
+import { Link } from "react-router-dom";
 
 const DabbaLeft = () => {
   const range = (start, end) =>
@@ -15,12 +15,26 @@ const DabbaLeft = () => {
   return (
     <nav className="dabba dabba-left">
       <section className="dabba-content">
-        <h2>Newsletters (Upcoming)</h2>
+        <h2>Newsletters</h2>
         <ul>
-          <li className="category">Weekly Editorials</li>
-          <li className="category">Monthly Editorials</li>
-          <li className="category">Revels</li>
-          <li className="category">Tech Tatva</li>
+          <li className="category">Weekly Editorials (Upcoming)</li>
+          <li className="category">Monthly Editorials (Upcoming)</li>
+          <li className="category">
+            <Link
+              to={`/?category=${encodeURIComponent("Revels")}`}
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              Revels
+            </Link>
+          </li>
+          <li className="category">
+            <Link
+              to={`/?category=${encodeURIComponent("TechTatva")}`}
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              Tech Tatva
+            </Link>
+          </li>
         </ul>
       </section>
       <section className="dabba-content">
@@ -28,7 +42,7 @@ const DabbaLeft = () => {
         <ul>
           {years.map((year) => {
             const params = new URLSearchParams();
-            params.set('year', year);
+            params.set("year", year);
 
             return (
               <li key={year}>

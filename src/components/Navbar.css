@@ -163,6 +163,7 @@
 .sidebar-category:hover,
 .sidebar-link:hover {
   color: #f06739;
+  cursor: pointer;
 }
 
 .sidebar .sidebar-category {

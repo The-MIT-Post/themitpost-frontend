@@ -4,9 +4,20 @@ import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const categories = [
+    "Campus",
+    "Arts & Culture",
+    "Science & Technology",
+    "World",
+    "Media",
+    "FAQ",
+  ];
+
+  const years = [2024, 2023, 2022];
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -31,6 +42,7 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Main Navbar */}
       <nav className="navbar">
         <div className="navbar-links">
           <button onClick={toggleSidebar} className="hamburger-btn">
@@ -55,11 +67,13 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
+
         <div className="navbar-brand">
           <Link to="/" className="navbar-brand-link">
             <img src="/mit-post-logo-new.png" alt="The MIT Post" />
           </Link>
         </div>
+
         <ul className="navbar-links">
           <li>
             {currentUser ? (
@@ -69,18 +83,14 @@ const Navbar = () => {
             ) : (
               <div className="search-wrapper">
                 <button className="search-btn" onClick={toggleSearch}>
+                  {/* Search SVG */}
                   <svg
                     version="1.1"
                     id="Layer_1"
                     xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px"
-                    y="0px"
                     width="30px"
                     height="30px"
                     viewBox="0 0 122.879 119.799"
-                    enable-background="new 0 0 122.879 119.799"
-                    xml:space="preserve"
                   >
                     <g>
                       <path
@@ -90,6 +100,7 @@ const Navbar = () => {
                     </g>
                   </svg>
                 </button>
+
                 <div className={`search-column ${isSearchOpen ? "open" : ""}`}>
                   <input
                     type="text"
@@ -103,11 +114,14 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
+
+      {/* Sidebar */}
       {isSidebarOpen && (
         <>
           <div className="sidebar">
             <div className="sidebar-items-container">
               <ul className="sidebar-items">
+                {/* Categories */}
                 <li
                   className={`sidebar-item ${
                     openStates[0] ? "ddown-visible" : ""
@@ -120,15 +134,24 @@ const Navbar = () => {
                     Categories &#9662;
                   </div>
                   <ul className="sidebar-ddown">
-                    <li className="sidebar-link">Campus</li>
-                    <li className="sidebar-link">Arts & Culture</li>
-                    <li className="sidebar-link">Science & Technology</li>
-                    <li className="sidebar-link">News</li>
-                    <li className="sidebar-link">Interviews</li>
-                    <li className="sidebar-link">Notices</li>
-                    <li className="sidebar-link">Media</li>
+                    {categories.map((category) => {
+                      const params = new URLSearchParams();
+                      params.set("category", category);
+                      return (
+                        <li key={category} className="sidebar-link">
+                          <Link
+                            to={`/?${params.toString()}`}
+                            onClick={() => setIsSidebarOpen(false)}
+                          >
+                            {category}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
+
+                {/* About */}
                 <li
                   className={`sidebar-item ${
                     openStates[1] ? "ddown-visible" : ""
@@ -154,6 +177,7 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </li>
+
                 <li
                   className={`sidebar-item ${
                     openStates[2] ? "ddown-visible" : ""
@@ -166,6 +190,9 @@ const Navbar = () => {
                     Resources &#9662;
                   </div>
                   <ul className="sidebar-ddown">
+                    <li className="sidebar-link">
+                      <Link to="/notices">Notices (Upcoming)</Link>
+                    </li>
                     <li className="sidebar-link">
                       <a
                         href="/resources/academic_calender.pdf"
@@ -208,6 +235,8 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </li>
+
+                {/* Newsletters */}
                 <li
                   className={`sidebar-item ${
                     openStates[3] ? "ddown-visible" : ""
@@ -217,14 +246,35 @@ const Navbar = () => {
                     className="sidebar-category"
                     onClick={() => toggleItem(3)}
                   >
-                    Archives (Upcoming) &#9662;
+                    Newsletters &#9662;
                   </div>
                   <ul className="sidebar-ddown">
-                    <li className="sidebar-link">2024</li>
-                    <li className="sidebar-link">2023</li>
-                    <li className="sidebar-link">2022</li>
+                    <li className="sidebar-link">
+                      Weekly Editorials (Upcoming)
+                    </li>
+                    <li className="sidebar-link">
+                      Monthly Editorials (Upcoming)
+                    </li>
+                    <li className="sidebar-link">
+                      <Link
+                        to={`/?category=${encodeURIComponent("Revels")}`}
+                        onClick={() => setIsSidebarOpen(false)}
+                      >
+                        Revels
+                      </Link>
+                    </li>
+                    <li className="sidebar-link">
+                      <Link
+                        to={`/?category=${encodeURIComponent("TechTatva")}`}
+                        onClick={() => setIsSidebarOpen(false)}
+                      >
+                        Tech Tatva
+                      </Link>
+                    </li>
                   </ul>
                 </li>
+
+                {/* Archives */}
                 <li
                   className={`sidebar-item ${
                     openStates[4] ? "ddown-visible" : ""
@@ -234,19 +284,30 @@ const Navbar = () => {
                     className="sidebar-category"
                     onClick={() => toggleItem(4)}
                   >
-                    Newsletters (Upcoming) &#9662;
+                    Archives &#9662;
                   </div>
                   <ul className="sidebar-ddown">
-                    <li className="sidebar-link">Weekly Editorials</li>
-                    <li className="sidebar-link">Monthly Editorials</li>
-                    <li className="sidebar-link">Revels</li>
-                    <li className="sidebar-link">Tech Tatva</li>
+                    {years.map((year) => {
+                      const params = new URLSearchParams();
+                      params.set("year", year);
+
+                      return (
+                        <li key={year}>
+                          <Link
+                            to={`/?${params.toString()}`}
+                            className="sidebar-link"
+                          >
+                            {year}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="darken-bg"></div>
+          <div className="darken-bg" onClick={toggleSidebar}></div>
         </>
       )}
     </>

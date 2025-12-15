@@ -7,6 +7,7 @@ import FromTheEditorsDesk from "../components/FromTheEditorsDesk";
 import BoardPage from "../components/BoardPage";
 import BoardMembers from "../components/BoardMembers";
 import SubboardMembers from "../components/SubboardMembers";
+import Notices from "../components/Notices";
 import Login from "../components/Login";
 
 import AdminLayout from "../components/AdminLayout";
@@ -30,6 +31,7 @@ const AppRouter = ({ articles }) => {
       <Route path="/board" element={<BoardPage />} />
       <Route path="/board/members" element={<BoardMembers />} />
       <Route path="/board/subboard" element={<SubboardMembers />} />
+      <Route path="/notices" element={<Notices />} />
       <Route path="/login" element={<Login />} />
 
       {/* Admin routes (protected + layout) */}
