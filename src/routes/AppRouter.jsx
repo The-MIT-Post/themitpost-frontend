@@ -13,6 +13,7 @@ import AdminLayout from "../components/AdminLayout";
 import AdminDashboard from "../components/AdminDashboard";
 import AdminArticlesList from "../components/AdminArticlesList";
 import EditArticle from "../components/EditArticle";
+import AdminStatistics from "../components/AdminStatistics";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const AppRouter = ({ articles }) => {
@@ -46,6 +47,7 @@ const AppRouter = ({ articles }) => {
           element={<AdminArticlesList articles={articles} />}
         />
         <Route path="edit/:id" element={<EditArticle />} />
+        <Route path="statistics" element={<AdminStatistics />} />
       </Route>
     </Routes>
   );

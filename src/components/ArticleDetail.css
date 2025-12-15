@@ -41,6 +41,16 @@
   margin-bottom: 1rem;
 }
 
+.article-views {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-views svg {
+  margin-left: 5px;
+}
+
 .article-content {
   color: #ffffff;
   line-height: 1.8;
@@ -139,7 +149,7 @@
 
 .card {
   position: relative;
-  min-width: 30vw;
+  width: max(27vw, 300px);
   min-height: 35vh;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin: 0 0.5vw;

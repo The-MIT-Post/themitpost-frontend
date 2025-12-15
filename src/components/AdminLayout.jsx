@@ -38,6 +38,18 @@ const AdminLayout = () => {
               </Link>
             </li>
             <li>
+              <Link
+                className={`nav-link ${
+                  location.pathname.includes("/admin/statistics")
+                    ? "active"
+                    : ""
+                }`}
+                to="/admin/statistics"
+              >
+                View Statistics
+              </Link>
+            </li>
+            <li>
               <Link className="nav-link" to="/">
                 Go to Home
               </Link>
