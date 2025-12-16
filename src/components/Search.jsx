@@ -11,7 +11,7 @@ const Search = ({ toggleSearch, isSearchOpen }) => {
     console.log("Submitted");
 
     const trimmedQuery = query.trim();
-    if (trimmedQuery) {
+    if (!trimmedQuery) {
       alert("Please enter a search term!");
       return;
     }
