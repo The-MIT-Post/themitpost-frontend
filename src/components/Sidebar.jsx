@@ -4,7 +4,9 @@ import "./Navbar.css";
 
 const Sidebar = ({ toggleSidebar }) => {
   const sidebarItemsCount = document.querySelectorAll(".sidebar-item").length;
-  const [openStates, setOpenStates] = useState(new Array(sidebarItemsCount).fill(false));
+  const [openStates, setOpenStates] = useState(
+    new Array(sidebarItemsCount).fill(false)
+  );
 
   const toggleItem = (index) => {
     const newStates = [...openStates];
@@ -12,7 +14,14 @@ const Sidebar = ({ toggleSidebar }) => {
     setOpenStates(newStates);
   };
 
-  const categories = ["Campus", "Arts & Culture", "Science & Technology", "World", "Media", "FAQ"];
+  const categories = [
+    "Campus",
+    "Arts & Culture",
+    "Science & Technology",
+    "World",
+    "Media",
+    "FAQ",
+  ];
 
   const years = [2024, 2023, 2022];
 
@@ -22,7 +31,9 @@ const Sidebar = ({ toggleSidebar }) => {
         <div className="sidebar-items-container">
           <ul className="sidebar-items">
             {/* Categories */}
-            <li className={`sidebar-item ${openStates[0] ? "ddown-visible" : ""}`}>
+            <li
+              className={`sidebar-item ${openStates[0] ? "ddown-visible" : ""}`}
+            >
               <div className="sidebar-category" onClick={() => toggleItem(0)}>
                 Categories &#9662;
               </div>
@@ -32,7 +43,10 @@ const Sidebar = ({ toggleSidebar }) => {
                   params.set("category", category);
                   return (
                     <li key={category} className="sidebar-link">
-                      <Link to={`/?${params.toString()}`} onClick={() => setIsSidebarOpen(false)}>
+                      <Link
+                        to={`/?${params.toString()}`}
+                        onClick={() => setIsSidebarOpen(false)}
+                      >
                         {category}
                       </Link>
                     </li>
@@ -42,7 +56,9 @@ const Sidebar = ({ toggleSidebar }) => {
             </li>
 
             {/* About */}
-            <li className={`sidebar-item ${openStates[1] ? "ddown-visible" : ""}`}>
+            <li
+              className={`sidebar-item ${openStates[1] ? "ddown-visible" : ""}`}
+            >
               <div className="sidebar-category" onClick={() => toggleItem(1)}>
                 About &#9662;
               </div>
@@ -59,13 +75,15 @@ const Sidebar = ({ toggleSidebar }) => {
               </ul>
             </li>
 
-            <li className={`sidebar-item ${openStates[2] ? "ddown-visible" : ""}`}>
+            <li
+              className={`sidebar-item ${openStates[2] ? "ddown-visible" : ""}`}
+            >
               <div className="sidebar-category" onClick={() => toggleItem(2)}>
                 Resources &#9662;
               </div>
               <ul className="sidebar-ddown">
                 <li className="sidebar-link">
-                  <Link to="/notices">Notices (Upcoming)</Link>
+                  <Link to="/notices">Notices</Link>
                 </li>
                 <li className="sidebar-link">
                   <a href="/resources/academic_calender.pdf" target="_blank">
@@ -80,12 +98,16 @@ const Sidebar = ({ toggleSidebar }) => {
                 <li className="sidebar-link">
                   <a
                     href="https://teams.microsoft.com/l/channel/19%3ATL33jeLE7fX2AMyd610G_9_LOEWe2fNZ4TBIrHlo8_Q1%40thread.tacv2/General?groupId=ea86aefe-31d7-41c4-ba6b-512594ff6c2a&tenantId=29bebd42-f1ff-4c3d-9688-067e3460dc1f"
-                    target="_blank">
+                    target="_blank"
+                  >
                     Manipal OSF
                   </a>
                 </li>
                 <li className="sidebar-link">
-                  <a href="https://mitmpllibportal.manipal.edu/" target="_blank">
+                  <a
+                    href="https://mitmpllibportal.manipal.edu/"
+                    target="_blank"
+                  >
                     Library Portal
                   </a>
                 </li>
@@ -98,7 +120,9 @@ const Sidebar = ({ toggleSidebar }) => {
             </li>
 
             {/* Newsletters */}
-            <li className={`sidebar-item ${openStates[3] ? "ddown-visible" : ""}`}>
+            <li
+              className={`sidebar-item ${openStates[3] ? "ddown-visible" : ""}`}
+            >
               <div className="sidebar-category" onClick={() => toggleItem(3)}>
                 Newsletters &#9662;
               </div>
@@ -108,14 +132,16 @@ const Sidebar = ({ toggleSidebar }) => {
                 <li className="sidebar-link">
                   <Link
                     to={`/?category=${encodeURIComponent("Revels")}`}
-                    onClick={() => setIsSidebarOpen(false)}>
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
                     Revels
                   </Link>
                 </li>
                 <li className="sidebar-link">
                   <Link
                     to={`/?category=${encodeURIComponent("TechTatva")}`}
-                    onClick={() => setIsSidebarOpen(false)}>
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
                     Tech Tatva
                   </Link>
                 </li>
@@ -123,7 +149,9 @@ const Sidebar = ({ toggleSidebar }) => {
             </li>
 
             {/* Archives */}
-            <li className={`sidebar-item ${openStates[4] ? "ddown-visible" : ""}`}>
+            <li
+              className={`sidebar-item ${openStates[4] ? "ddown-visible" : ""}`}
+            >
               <div className="sidebar-category" onClick={() => toggleItem(4)}>
                 Archives &#9662;
               </div>
@@ -134,7 +162,10 @@ const Sidebar = ({ toggleSidebar }) => {
 
                   return (
                     <li key={year}>
-                      <Link to={`/?${params.toString()}`} className="sidebar-link">
+                      <Link
+                        to={`/?${params.toString()}`}
+                        className="sidebar-link"
+                      >
                         {year}
                       </Link>
                     </li>

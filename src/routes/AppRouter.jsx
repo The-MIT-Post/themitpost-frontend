@@ -23,10 +23,12 @@ const AppRouter = ({ articles }) => {
     <Routes>
       {/* Public routes */}
       <Route path="/" element={<HomePage articles={articles} />} />
+
       <Route
         path="/articles/:id"
         element={<ArticleDetail articles={articles} />}
       />
+
       <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/fromTheEditorsDesk" element={<FromTheEditorsDesk />} />
       <Route path="/board" element={<BoardPage />} />

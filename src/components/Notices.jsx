@@ -40,8 +40,8 @@ const Notices = () => {
 
   const formatNoticeName = (name) =>
     name
-      .replace(/\.[^/.]+$/, "") // remove .pdf
-      .replace(/-\d{2}-\d{2}-\d{4}$/, "") // remove date
+      .replace(/\.[^/.]+$/, "")
+      .replace(/-\d{2}-\d{2}-\d{4}$/, "")
       .replace(/-/g, " ");
 
   return (
@@ -60,7 +60,7 @@ const Notices = () => {
               <div key={index} className="notice-item">
                 <h4>{formatNoticeName(notice.name)}</h4>
                 <iframe
-                  src={`${notice.url}#toolbar=0&navpanes=0`}
+                  src={`${notice.url}#view=FitV&navpanes=0`}
                   title={notice.name}
                   style={{
                     border: "1px solid black",

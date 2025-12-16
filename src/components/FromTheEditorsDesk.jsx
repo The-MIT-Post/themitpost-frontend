@@ -13,7 +13,7 @@ const FromTheEditorsDesk = () => {
       <Navbar />
 
       <div className="app-container editors-desk-container">
-        <h2>From the Editors Desk</h2>
+        <h2>From the Editor's Desk</h2>
         <article>
           <p>
             In our daily lives, we often speak of equality and the importance of

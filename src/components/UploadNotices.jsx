@@ -8,10 +8,29 @@ const UploadNotices = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const savedFiles = localStorage.getItem("uploadedFiles");
-    if (savedFiles) {
-      setUploadedFiles(JSON.parse(savedFiles));
-    }
+    const files = import.meta.glob("/public/notices/*.pdf", {
+      eager: true,
+      as: "url",
+    });
+
+    const fileList = Object.keys(files).map((path) => ({
+      name: path.split("/").pop(),
+      url: files[path],
+    }));
+
+    fileList.sort((a, b) => {
+      const extractDate = (name) => {
+        const match = name.match(/(\d{2})-(\d{2})-(\d{4})/);
+        if (!match) return new Date(0);
+
+        const [, dd, mm, yyyy] = match;
+        return new Date(`${yyyy}-${mm}-${dd}`);
+      };
+
+      return extractDate(b.name) - extractDate(a.name);
+    });
+
+    setUploadedFiles(fileList);
   }, []);
 
   const fileToBase64 = (file) => {
@@ -38,32 +57,22 @@ const UploadNotices = () => {
 
       const newFile = { name: renamedName, data: base64Data };
 
-      const updatedFiles = [newFile, ...uploadedFiles];
-
-      setUploadedFiles(updatedFiles);
-      localStorage.setItem("uploadedFiles", JSON.stringify(updatedFiles));
+      setMessage(
+        `Notice "${renamedName}" uploaded (feature will be enabled later)`
+      );
 
       setTitle("");
       setFile(null);
-      setMessage(`Notice "${renamedName}" uploaded successfully!`);
     } catch (error) {
-      console.error("Error converting file to Base64:", error);
+      console.error("Error converting file:", error);
       setMessage("Error uploading the file.");
     }
-  };
-
-  const handleDelete = (indexToDelete) => {
-    const updatedFiles = uploadedFiles.filter(
-      (_, index) => index !== indexToDelete
-    );
-    setUploadedFiles(updatedFiles);
-    localStorage.setItem("uploadedFiles", JSON.stringify(updatedFiles));
-    setMessage("Notice deleted successfully!");
   };
 
   return (
     <div className="upload-notice-container">
       <h1>Upload Notice (Feature not yet available)</h1>
+
       {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit} className="upload-notice-form">
         <div className="form-group">
@@ -99,13 +108,14 @@ const UploadNotices = () => {
           <ul>
             {uploadedFiles.map((f, index) => (
               <li key={index} className="notice-item">
-                <a href={f.data} target="_blank">
-                  {f.name}
+                <a href={f.url} target="_blank">
+                  {f.name
+                    .replace(/\.[^/.]+$/, "")
+                    .replace(/-\d{2}-\d{2}-\d{4}$/, "")
+                    .replace(/-/g, " ")}
                 </a>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(index)}
-                >
+
+                <button className="delete-btn" disabled>
                   Delete
                 </button>
               </li>

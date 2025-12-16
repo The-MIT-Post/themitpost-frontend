@@ -47,7 +47,7 @@ const DabbaRight = () => {
         <h2>Resources</h2>
         <ul>
           <li className="category">
-            <Link to="/notices">Notices (Upcoming)</Link>
+            <Link to="/notices">Notices</Link>
           </li>
           <li className="category">
             <a href="/resources/academic_calender.pdf" target="_blank">
