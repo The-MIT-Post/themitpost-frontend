@@ -7,8 +7,18 @@
   font-family: montreal;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #171717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f06739;
+  border-radius: 4px;
+}
+
 ::selection {
-  background-color: #5b68eb;
+  background-color: #1d2796;
 }
 
 ::-webkit-scrollbar-button {

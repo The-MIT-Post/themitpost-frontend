@@ -133,6 +133,16 @@
   text-align: center;
 }
 
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #202020;
+  border-radius: 4px;
+}
+
 .sidebar-ddown li {
   padding: 0.5rem 1rem;
   list-style-type: none;

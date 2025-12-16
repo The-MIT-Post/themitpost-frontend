@@ -11,6 +11,7 @@
 
 .dabba::-webkit-scrollbar {
   width: 8px;
+  background-color: transparent;
 }
 
 .dabba::-webkit-scrollbar-thumb {

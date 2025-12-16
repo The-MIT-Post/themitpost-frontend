@@ -34,24 +34,23 @@
 
 .member-card {
   border-radius: 0.5rem;
-  padding: 1rem;
   text-align: center;
   transition: 0.3s ease;
-  width: 20vw;
+  width: 15vw;
   min-height: 350px;
 }
 
 .member-card img {
-  width: max(13vw, 70px);
-  height: max(13vw, 70px);
+  width: max(11.5vw, 85px);
+  height: max(11.5vw, 85px);
   border-radius: 50%;
   object-fit: cover;
   margin: 1rem;
 }
 
 .subboard .member-card img {
-  width: max(11vw, 70px);
-  height: max(11vw, 70px);
+  width: max(10vw, 85px);
+  height: max(10vw, 85px);
 }
 
 .member-card p {
@@ -77,7 +76,7 @@
     width: 100%;
     justify-content: space-between;
     min-height: initial;
-    padding: 1rem 0.2rem;
+    padding: 0.7rem 2.5rem;
   }
 
   .member-card div {
