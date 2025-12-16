@@ -9,12 +9,20 @@ const Search = ({ toggleSearch, isSearchOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitted");
-    if (!query.trim()) {
+
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
       alert("Please enter a search term!");
       return;
     }
 
-    navigate(`/?tag=${encodeURIComponent(query)}`);
+    const validQueryPattern = /^[a-zA-Z0-9\s-]+$/;
+    if (!validQueryPattern.test(trimmedQuery)) {
+      alert("Search term contains invalid characters!");
+      return;
+    }
+
+    navigate(`/?tag=${encodeURIComponent(trimmedQuery)}`);
   };
 
   return (
