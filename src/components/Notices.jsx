@@ -9,21 +9,46 @@ const Notices = () => {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
-    const savedNotices = localStorage.getItem("uploadedFiles");
-    if (savedNotices) {
-      setNotices(JSON.parse(savedNotices));
-    }
+    const noticeFiles = import.meta.glob("/public/notices/*.pdf", {
+      eager: true,
+      as: "url",
+    });
+
+    const noticesArray = Object.keys(noticeFiles).map((path) => {
+      const fileName = path.split("/").pop();
+
+      return {
+        name: fileName,
+        url: noticeFiles[path],
+      };
+    });
+
+    noticesArray.sort((a, b) => {
+      const extractDate = (name) => {
+        const match = name.match(/(\d{2})-(\d{2})-(\d{4})/);
+        if (!match) return new Date(0);
+
+        const [, dd, mm, yyyy] = match;
+        return new Date(`${yyyy}-${mm}-${dd}`);
+      };
+
+      return extractDate(b.name) - extractDate(a.name);
+    });
+
+    setNotices(noticesArray);
   }, []);
 
-  const formatNoticeName = (name) => {
-    const nameWithoutExt = name.replace(/\.[^/.]+$/, "");
-    return nameWithoutExt.replace(/-/g, " ");
-  };
+  const formatNoticeName = (name) =>
+    name
+      .replace(/\.[^/.]+$/, "") // remove .pdf
+      .replace(/-\d{2}-\d{2}-\d{4}$/, "") // remove date
+      .replace(/-/g, " ");
 
   return (
     <>
       <RotatingCircle />
       <Navbar />
+
       <div className="notices-container">
         <h1>Notices</h1>
 
@@ -35,10 +60,10 @@ const Notices = () => {
               <div key={index} className="notice-item">
                 <h4>{formatNoticeName(notice.name)}</h4>
                 <iframe
-                  src={`${notice.data}#toolbar=0&navpanes=0&scrollbar=1`}
+                  src={`${notice.url}#toolbar=0&navpanes=0`}
                   title={notice.name}
                   style={{
-                    border: "1px solid #000000ff",
+                    border: "1px solid black",
                     borderRadius: "0.2rem",
                   }}
                 />
@@ -47,6 +72,7 @@ const Notices = () => {
           </div>
         )}
       </div>
+
       <BackButton />
       <Footer />
     </>

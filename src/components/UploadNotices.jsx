@@ -63,7 +63,7 @@ const UploadNotices = () => {
 
   return (
     <div className="upload-notice-container">
-      <h1>Upload Notice</h1>
+      <h1>Upload Notice (Feature not yet available)</h1>
       {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit} className="upload-notice-form">
         <div className="form-group">
