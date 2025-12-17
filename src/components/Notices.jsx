@@ -8,6 +8,8 @@ import "./Notices.css";
 const Notices = () => {
   const [notices, setNotices] = useState([]);
 
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   useEffect(() => {
     const noticeFiles = import.meta.glob("/public/notices/*.pdf", {
       eager: true,
@@ -16,7 +18,6 @@ const Notices = () => {
 
     const noticesArray = Object.keys(noticeFiles).map((path) => {
       const fileName = path.split("/").pop();
-
       return {
         name: fileName,
         url: noticeFiles[path],
@@ -58,15 +59,29 @@ const Notices = () => {
           <div className="notices-list">
             {notices.map((notice, index) => (
               <div key={index} className="notice-item">
-                <h4>{formatNoticeName(notice.name)}</h4>
-                <iframe
-                  src={`${notice.url}#view=FitV&navpanes=0`}
-                  title={notice.name}
-                  style={{
-                    border: "1px solid black",
-                    borderRadius: "0.2rem",
-                  }}
-                />
+                {isMobile ? (
+                  <a
+                    href={notice.url}
+                    target="_blank"
+                    className="mobile-notice-link"
+                  >
+                    {formatNoticeName(notice.name)}
+                  </a>
+                ) : (
+                  <>
+                    <h4>{formatNoticeName(notice.name)}</h4>
+                    <iframe
+                      src={`${notice.url}#view=FitV&navpanes=0`}
+                      title={notice.name}
+                      style={{
+                        border: "1px solid black",
+                        borderRadius: "0.2rem",
+                        width: "100%",
+                        height: "600px",
+                      }}
+                    />
+                  </>
+                )}
               </div>
             ))}
           </div>

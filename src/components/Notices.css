@@ -38,7 +38,12 @@
   border-radius: 0.2rem;
 }
 
-.pdfViewer .thumbnailView,
+/* .pdfViewer .thumbnailView,
 .thumbnailView {
-  display: none !important;
+  display: none;
+} */
+
+.mobile-notice-link {
+  text-decoration: underline;
+  color: #f06739;
 }
