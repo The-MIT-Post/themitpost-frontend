@@ -60,18 +60,14 @@ const Notices = () => {
             {notices.map((notice, index) => (
               <div key={index} className="notice-item">
                 {isMobile ? (
-                  <a
-                    href={notice.url}
-                    target="_blank"
-                    className="mobile-notice-link"
-                  >
+                  <a href={notice.url} target="_blank" className="mobile-notice-link">
                     {formatNoticeName(notice.name)}
                   </a>
                 ) : (
                   <>
                     <h4>{formatNoticeName(notice.name)}</h4>
                     <iframe
-                      src={`${notice.url}#view=FitV&navpanes=0`}
+                      src={`${notice.url}#view=FitH&navpanes=0`}
                       title={notice.name}
                       style={{
                         border: "1px solid black",
