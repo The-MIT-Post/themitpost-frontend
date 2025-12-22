@@ -34,9 +34,6 @@ const App = () => {
 			setLoading(true);
 			try {
 				const headers = {};
-				if (currentUser) {
-					headers["Authorization"] = `Bearer ${currentUser.token}`;
-				}
 
 				const url = new URL(`${import.meta.env.VITE_API_URL}/api/articles`);
 
