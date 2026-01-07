@@ -95,7 +95,7 @@ const EditArticle = () => {
     return <div className="notification error">Article not found</div>;
 
   return (
-    <div className="mainContent">
+    <div>
       <div className="formCard">
         <h1>Edit Article</h1>
 
