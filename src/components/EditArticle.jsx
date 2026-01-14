@@ -4,6 +4,24 @@ import { useAuth } from "../context/AuthContext";
 import Tiptap from "../rich_editor/Tiptap";
 import "./AdminDashboard.css";
 
+function getNewSummary(text, max = 350) {
+  return text.length > max ? text.slice(0, max) + "..." : text;
+}
+
+function updatePostName(title) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function getPlainText(html) {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+  return tempDiv.innerText || "";
+}
+
 const EditArticle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,10 +30,13 @@ const EditArticle = () => {
   const [article, setArticle] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
-    creator: "",
-    pubDate: "",
-    category: "Technology",
+    // creator: "",
+    // creator_name: "",
+    post_date: "",
+    category: "",
+    tags: [],
     content: "",
+    content_text: "",
   });
 
   const [isChanged, setIsChanged] = useState(false);
@@ -32,12 +53,16 @@ const EditArticle = () => {
 
         const data = await response.json();
         setArticle(data);
+
         setFormData({
           title: data.title,
-          creator: data.creator,
-          pubDate: new Date(data.pubDate).toISOString().split("T")[0],
+          // creator: data.creator,
+          // creator_name: data.creator_name || "",
+          post_date: new Date(data.post_date).toISOString().split("T")[0],
           category: data.category,
+          tags: data.tags || [],
           content: data.content,
+          content_text: data.content_text || getPlainText(data.content),
         });
       } catch (err) {
         setError(err.message);
@@ -56,12 +81,19 @@ const EditArticle = () => {
   };
 
   const handleContentChange = (content) => {
-    setFormData((prev) => ({ ...prev, content }));
+    setFormData((prev) => ({
+      ...prev,
+      content,
+      content_text: getPlainText(content),
+    }));
     setIsChanged(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const summary = getNewSummary(formData.content_text, 350);
+    const post_name = updatePostName(formData.title);
 
     try {
       const response = await fetch(
@@ -75,7 +107,9 @@ const EditArticle = () => {
           body: JSON.stringify({
             ...article,
             ...formData,
-            pubDate: new Date(formData.pubDate).toISOString(),
+            summary,
+            post_name,
+            post_date: new Date(formData.post_date).toISOString(),
             post_modified: new Date().toISOString(),
           }),
         }
@@ -83,7 +117,7 @@ const EditArticle = () => {
 
       if (!response.ok) throw new Error("Failed to update article");
 
-      navigate("/admin/articles");
+      navigate("/admin/new");
     } catch (err) {
       setError(err.message);
     }
@@ -111,8 +145,8 @@ const EditArticle = () => {
             />
           </div>
 
-          <div className="formGroup">
-            <label>Author</label>
+          {/* <div className="formGroup">
+            <label>Author Username</label>
             <input
               className="input"
               name="creator"
@@ -120,15 +154,26 @@ const EditArticle = () => {
               onChange={handleChange}
               required
             />
-          </div>
+          </div> */}
+
+          {/* <div className="formGroup">
+            <label>Author Name</label>
+            <input
+              className="input"
+              name="creator_name"
+              value={formData.creator_name}
+              onChange={handleChange}
+              required
+            />
+          </div> */}
 
           <div className="formGroup">
-            <label>Publishing Date</label>
+            <label>Post Date</label>
             <input
               className="input"
               type="date"
-              name="pubDate"
-              value={formData.pubDate}
+              name="post_date"
+              value={formData.post_date}
               onChange={handleChange}
               required
             />
@@ -142,12 +187,37 @@ const EditArticle = () => {
               value={formData.category}
               onChange={handleChange}
             >
-              <option>Technology</option>
-              <option>Business</option>
-              <option>Health</option>
-              <option>Science</option>
-              <option>Entertainment</option>
+              <option>Campus</option>
+              <option>Campus → Revels</option>
+              <option>Campus → TechTatva</option>
+              <option>Campus → Freshers Corner</option>
+              <option>Campus → FAQ</option>
+              <option>Arts & Culture</option>
+              <option>Science & Technology</option>
+              <option>World</option>
+              <option>World → Travel</option>
+              <option>News</option>
+              <option>Media</option>
+              <option>Media → Interviews</option>
             </select>
+          </div>
+
+          <div className="formGroup">
+            <label>Tags (comma separated)</label>
+            <input
+              className="input"
+              value={formData.tags.join(", ")}
+              onChange={(e) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  tags: e.target.value
+                    .split(",")
+                    .map((t) => t.trim())
+                    .filter(Boolean),
+                }));
+                setIsChanged(true);
+              }}
+            />
           </div>
 
           <div className="formGroup">

@@ -127,8 +127,6 @@ const Sidebar = ({ toggleSidebar }) => {
                 Newsletters &#9662;
               </div>
               <ul className="sidebar-ddown">
-                <li className="sidebar-link">Weekly Editorials (Upcoming)</li>
-                <li className="sidebar-link">Monthly Editorials (Upcoming)</li>
                 <li className="sidebar-link">
                   <Link
                     to={`/?category=${encodeURIComponent("Revels")}`}

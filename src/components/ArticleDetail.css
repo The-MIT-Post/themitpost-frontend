@@ -3,17 +3,59 @@
   flex-direction: column;
 }
 
-.suggested-articles {
+.article_and_sidebar_container {
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  padding: 3vw;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.Whats_Hot_container {
+  background-color: #181818cf;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  color: #b6b6b6;
+  height: 75vh;
+  width: 40vw;
+  position: sticky;
+  top: 20vh;
+}
+
+.Whats_Hot_container h3 {
+  color: #f06739;
+  border-bottom: 1.5px solid #353535;
+  padding-bottom: 1vh;
+}
+
+.Whats_Hot_container ul {
+  list-style-type: none;
+}
+
+.Whats_Hot_container ul li a {
+  display: flex;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  margin-bottom: 0.5rem;
+}
+
+.Whats_Hot_container ul li a:hover {
+  color: #ffffff;
+}
+
+.Whats_Hot_container img {
+  width: 69px;
+  height: 60px;
+  margin: 0.5rem;
+  position: relative;
+  border-radius: 0.15rem;
+}
+.Whats_Hot_container p {
 }
 
 .article-detail {
   padding: 2rem;
   background-color: #1f1f1f;
   border-radius: 0.5rem;
-  margin: 2rem auto;
   width: 80%;
 }
 
@@ -55,6 +97,7 @@
   color: #ffffff;
   line-height: 1.8;
   font-size: min(1rem, 3.5vw);
+  margin: 0 min(2rem, 3vw);
 }
 
 .article-content p img,
@@ -71,7 +114,8 @@
 }
 
 .article-content p {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  /* text-indent: 2rem; */
 }
 
 .article-content a {
@@ -94,6 +138,11 @@
 }
 
 /* Card styles for suggested articles */
+
+.suggested-articles {
+  display: flex;
+  flex-direction: column;
+}
 
 .suggested-articles .section-title {
   font-size: min(2.5rem, 8vw);
@@ -174,9 +223,29 @@
   width: fit-content;
 }
 
+@media screen and (max-width: 750px) {
+  .Whats_Hot_container ul li a {
+    flex-direction: column;
+  }
+}
+
 @media screen and (max-width: 500px) {
+  .article_and_sidebar_container {
+    flex-direction: column;
+  }
+
+  .Whats_Hot_container {
+    width: 90%;
+    margin: auto;
+    height: initial;
+  }
+
+  .Whats_Hot_container ul li a {
+    flex-direction: row;
+  }
   .article-detail {
     width: 90%;
+    margin: auto;
     padding: 1.5rem;
   }
 
@@ -186,12 +255,11 @@
 
   .famous-articles-grid {
     flex-direction: column;
-    width: 100%;
-    margin-left: 0;
+    width: 90%;
+    margin: auto;
   }
 
   .card {
-    width: 90vw;
     margin: 0 auto;
     /* height: 95vh; */
   }

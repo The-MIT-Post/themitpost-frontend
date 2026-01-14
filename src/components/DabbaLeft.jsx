@@ -17,8 +17,6 @@ const DabbaLeft = () => {
       <section className="dabba-content">
         <h2>Newsletters</h2>
         <ul>
-          <li className="category">Weekly Editorials (Upcoming)</li>
-          <li className="category">Monthly Editorials (Upcoming)</li>
           <li className="category">
             <Link
               to={`/?category=${encodeURIComponent("Revels")}`}
