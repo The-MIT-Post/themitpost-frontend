@@ -301,32 +301,6 @@ p {
   transform: translateY(-2px);
 }
 
-/* Pagination Bar */
-.pagination-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  align-self: center;
-  flex-wrap: wrap;
-}
-
-.pagination-button {
-  background-color: #2a2a2a;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 5px 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.pagination-button:hover {
-  background-color: #f06739;
-  transform: translateY(-2px);
-}
-
 /* Footer */
 .footer {
   background-color: #2a2a2a;

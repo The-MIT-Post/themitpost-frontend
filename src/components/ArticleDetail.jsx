@@ -53,6 +53,17 @@ const ArticleDetail = ({ articles }) => {
       } catch (error) {
         console.error("Error fetching article:", error);
       }
+
+      const currentDate = article.post_date;
+
+      // const prevArticle = await articles.findOne(
+      //   { post_date: { $lt: currentDate } },
+      //   { sort: { post_date: -1 } }
+      // );
+      // const nextArticle = await articles.findOne(
+      //   { post_date: { $gt: currentDate } },
+      //   { sort: { post_date: 1 } }
+      // );
     };
 
     fetchArticle();
@@ -131,6 +142,15 @@ const ArticleDetail = ({ articles }) => {
             </ul>
           </aside>
         </div>
+
+        {/* <div className="next-prev-container">
+          <button className="next-article-btn">
+            <Link to={"/articles/${prevArticle._id}"}>← &nbsp; Previous</Link>
+          </button>
+          <button className="prev-article-btn">
+            <Link to={"/articles/${nextArticle._id}" }>Next &nbsp; →</Link>
+          </button>
+        </div> */}
 
         <div className="suggested-articles">
           <h2 className="section-title">Suggested Articles</h2>

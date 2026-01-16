@@ -137,6 +137,26 @@
   font-weight: 600;
 }
 
+.next-prev-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-prev-container button {
+  background: none;
+  /* border: 1.5px solid gray; */
+  border: none;
+  color: white;
+  background-color: #f06739;
+  cursor: pointer;
+  font-size: min(0.75rem, 2.6vw);
+  width: 10vw;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease-in-out;
+  margin: 1rem 2rem 2rem;
+}
+
 /* Card styles for suggested articles */
 
 .suggested-articles {
@@ -223,17 +243,7 @@
   width: fit-content;
 }
 
-@media screen and (max-width: 750px) {
-  .Whats_Hot_container ul li a {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .article_and_sidebar_container {
-    flex-direction: column;
-  }
-
+@media screen and (max-width: 850px) {
   .Whats_Hot_container {
     width: 90%;
     margin: auto;
@@ -266,5 +276,15 @@
 
   .card:hover {
     transform: none;
+  }
+
+  .next-prev-container button {
+    min-width: fit-content;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .article_and_sidebar_container {
+    flex-direction: column;
   }
 }
