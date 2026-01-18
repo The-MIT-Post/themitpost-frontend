@@ -116,12 +116,24 @@ const ArticleDetail = ({ articles }) => {
                     />
                   </svg>
                 </span>
-                <span className="article-author">By {article.creator_name}</span>
+                <span className="article-author">
+                  By {article.creator_name}
+                </span>
                 {/* <span className="article-author">By {article.creator_name}</span> */}
               </div>
             </div>
             <div className="article-content">
               {parse(article.content, { replace: replaceImages })}
+            </div>
+            <div className="next-prev-container">
+              <button className="next-article-btn">
+                <Link to={"/articles/${prevArticle._id}"}>
+                  ← &nbsp; Previous
+                </Link>
+              </button>
+              <button className="prev-article-btn">
+                <Link to={"/articles/${nextArticle._id}"}>Next &nbsp; →</Link>
+              </button>
             </div>
           </div>
           <aside className="Whats_Hot_container">
@@ -143,17 +155,8 @@ const ArticleDetail = ({ articles }) => {
           </aside>
         </div>
 
-        {/* <div className="next-prev-container">
-          <button className="next-article-btn">
-            <Link to={"/articles/${prevArticle._id}"}>← &nbsp; Previous</Link>
-          </button>
-          <button className="prev-article-btn">
-            <Link to={"/articles/${nextArticle._id}" }>Next &nbsp; →</Link>
-          </button>
-        </div> */}
-
         <div className="suggested-articles">
-          <h2 className="section-title">Suggested Articles</h2>
+          <h2 className="section-title">Explore More</h2>
           <div className="famous-articles-grid">
             {suggestedArticles.map((article) => (
               <div key={article._id} className="card">

@@ -149,11 +149,11 @@
   background-color: #f06739;
   cursor: pointer;
   font-size: min(0.75rem, 2.6vw);
-  width: 10vw;
+  width: 11vw;
   padding: 0.7rem 1.2rem;
   border-radius: 0.3rem;
   transition: all 0.3s ease-in-out;
-  margin: 1rem 2rem 2rem;
+  margin: 1rem 1rem 0rem;
 }
 
 /* Card styles for suggested articles */

@@ -10,7 +10,7 @@ const DabbaLeft = () => {
       (_, i) => start + i * (start <= end ? 1 : -1)
     );
 
-  const years = range(2024, 2022);
+  const years = range(2024, 2015);
 
   return (
     <nav className="dabba dabba-left">

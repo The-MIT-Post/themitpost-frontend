@@ -23,7 +23,13 @@ const Sidebar = ({ toggleSidebar }) => {
     "FAQ",
   ];
 
-  const years = [2024, 2023, 2022];
+  const range = (start, end) =>
+    Array.from(
+      { length: Math.abs(end - start) + 1 },
+      (_, i) => start + i * (start <= end ? 1 : -1)
+    );
+
+  const years = range(2024, 2015);
 
   return (
     <>
