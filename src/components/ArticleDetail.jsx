@@ -97,7 +97,7 @@ const ArticleDetail = ({ articles }) => {
               <h1 className="article-title">{article.title}</h1>
               <div className="article-meta">
                 <span className="article-date">
-                  {new Date(article.pubDate).toLocaleDateString()}
+                  {new Date(article.createdAt).toLocaleDateString()}
                 </span>
                 <span className="article-views">
                   {article.views}
@@ -116,7 +116,7 @@ const ArticleDetail = ({ articles }) => {
                     />
                   </svg>
                 </span>
-                <span className="article-author">By {article.creator}</span>
+                <span className="article-author">By {article.creator_name}</span>
                 {/* <span className="article-author">By {article.creator_name}</span> */}
               </div>
             </div>

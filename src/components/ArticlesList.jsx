@@ -89,8 +89,8 @@ const ArticlesList = ({ articles }) => {
 
             <div className="bottom-container">
               <p className="articles-list-meta">
-                By {article.creator} |{" "}
-                {new Date(article.pubDate).toLocaleDateString()}
+                By {article.creator_name} |{" "}
+                {new Date(article.createdAt).toLocaleDateString()}
               </p>
 
               <Link

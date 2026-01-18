@@ -49,8 +49,6 @@
   position: relative;
   border-radius: 0.15rem;
 }
-.Whats_Hot_container p {
-}
 
 .article-detail {
   padding: 2rem;
@@ -103,8 +101,9 @@
 .article-content p img,
 .article-content img {
   max-width: 70%;
+  display: block;
   height: auto;
-  margin: 1rem 0;
+  margin: 1rem auto;
   border-radius: 0.3rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
