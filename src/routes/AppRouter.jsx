@@ -18,16 +18,13 @@ import UploadNotices from "../components/UploadNotices";
 import AdminStatistics from "../components/AdminStatistics";
 import ProtectedRoute from "../components/ProtectedRoute";
 
-const AppRouter = ({ articles }) => {
+const AppRouter = ({ articles, total }) => {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/" element={<HomePage articles={articles} />} />
+      <Route path="/" element={<HomePage articles={articles} total={total} />} />
 
-      <Route
-        path="/articles/:id"
-        element={<ArticleDetail articles={articles} />}
-      />
+      <Route path="/articles/:id" element={<ArticleDetail />} />
 
       <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/fromTheEditorsDesk" element={<FromTheEditorsDesk />} />
@@ -44,13 +41,9 @@ const AppRouter = ({ articles }) => {
           <ProtectedRoute>
             <AdminLayout />
           </ProtectedRoute>
-        }
-      >
-        <Route path="new" element={<AdminDashboard articles={articles} />} />
-        <Route
-          path="modify"
-          element={<AdminArticlesList articles={articles} />}
-        />
+        }>
+        <Route path="new" element={<AdminDashboard articles={articles} total={total} />} />
+        <Route path="modify" element={<AdminArticlesList articles={articles} total={total} />} />
         <Route path="edit/:id" element={<EditArticle />} />
         <Route path="statistics" element={<AdminStatistics />} />
         <Route path="upload-notice" element={<UploadNotices />} />

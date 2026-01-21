@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
+import { decode } from "html-entities";
 import RotatingCircle from "./RotatingCircle";
 import BackButton from "./BackButton";
 import "./ArticleDetail.css";
@@ -18,66 +19,37 @@ const ArticleDetail = ({ articles }) => {
   const [popularArticles, setPopularArticles] = useState([]);
 
   useEffect(() => {
-    const fetchArticle = async () => {
+    const fetchPageData = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/articles/${id}`
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`);
         const data = await response.json();
         setArticle(data);
 
-        const views_res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/articles/${id}/views`,
-          {
-            method: "POST",
-          }
-        );
-
+        const views_res = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}/views`, {
+          method: "POST",
+        });
         if (!views_res.ok) throw new Error("Failed to update views");
 
-        if (articles.length > 0) {
-          const famous = articles
-            .filter((a) => a._id !== id)
-            .sort((a, b) => b.views - a.views)
-            .slice(0, 4);
+        const explore_res = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/random`);
+        const explore = await explore_res.json();
+        setSuggestedArticles(explore);
 
-          setPopularArticles(famous);
-
-          const random = articles
-            .filter((a) => a._id !== id)
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
-
-          setSuggestedArticles(random);
-        }
+        const popular_res = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/popular`);
+        const popular = await popular_res.json();
+        setPopularArticles(popular);
       } catch (error) {
         console.error("Error fetching article:", error);
       }
-
-      const currentDate = article.post_date;
-
-      // const prevArticle = await articles.findOne(
-      //   { post_date: { $lt: currentDate } },
-      //   { sort: { post_date: -1 } }
-      // );
-      // const nextArticle = await articles.findOne(
-      //   { post_date: { $gt: currentDate } },
-      //   { sort: { post_date: 1 } }
-      // );
     };
 
-    fetchArticle();
+    fetchPageData();
     window.scrollTo(0, 0);
   }, [id, articles]);
 
   const replaceImages = (node) => {
     if (node.name === "img") {
       return (
-        <img
-          src={fallback2}
-          alt={node.attribs.alt || "Fallback Image"}
-          className="article-image"
-        />
+        <img src={fallback2} alt={node.attribs.alt || "Fallback Image"} className="article-image" />
       );
     }
   };
@@ -94,7 +66,7 @@ const ArticleDetail = ({ articles }) => {
         <div className="article_and_sidebar_container">
           <div className="article-detail">
             <div className="article-header">
-              <h1 className="article-title">{article.title}</h1>
+              <h1 className="article-title">{decode(article.title)}</h1>
               <div className="article-meta">
                 <span className="article-date">
                   {new Date(article.createdAt).toLocaleDateString()}
@@ -106,8 +78,7 @@ const ArticleDetail = ({ articles }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 122.88 68.18"
                     width="20px"
-                    height="20px"
-                  >
+                    height="20px">
                     <title>view</title>
                     <path
                       class="cls-1"
@@ -116,24 +87,26 @@ const ArticleDetail = ({ articles }) => {
                     />
                   </svg>
                 </span>
-                <span className="article-author">
-                  By {article.creator_name}
-                </span>
+                <span className="article-author">By {decode(article.creator_name)}</span>
                 {/* <span className="article-author">By {article.creator_name}</span> */}
               </div>
             </div>
-            <div className="article-content">
-              {parse(article.content, { replace: replaceImages })}
-            </div>
+            <div className="article-content">{parse(article.content)}</div>
             <div className="next-prev-container">
-              <button className="next-article-btn">
-                <Link to={"/articles/${prevArticle._id}"}>
+              {article.prev ? (
+                <Link to={`/articles/${article.prev._id}`} title={article.prev.title}>
                   ← &nbsp; Previous
                 </Link>
-              </button>
-              <button className="prev-article-btn">
-                <Link to={"/articles/${nextArticle._id}"}>Next &nbsp; →</Link>
-              </button>
+              ) : (
+                <div></div>
+              )}
+              {article.next ? (
+                <Link to={`/articles/${article.next._id}`} title={article.next.title}>
+                  Next &nbsp; →
+                </Link>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
           <aside className="Whats_Hot_container">
@@ -142,11 +115,7 @@ const ArticleDetail = ({ articles }) => {
               {popularArticles.map((item) => (
                 <li key={item._id}>
                   <Link to={`/articles/${item._id}`}>
-                    <img
-                      src={fallbackImage}
-                      alt={item.title}
-                      className="card-image"
-                    />
+                    <img src={fallbackImage} alt={item.title} className="card-image" />
                     <p>{item.title}</p>
                   </Link>
                 </li>
@@ -160,18 +129,11 @@ const ArticleDetail = ({ articles }) => {
           <div className="famous-articles-grid">
             {suggestedArticles.map((article) => (
               <div key={article._id} className="card">
-                <img
-                  src={fallbackImage}
-                  alt={article.title}
-                  className="card-image"
-                />
+                <img src={fallbackImage} alt={article.title} className="card-image" />
                 <div className="card__content">
                   <p className="card__title">{article.title}</p>
                   <p className="card__description">{article.summary}</p>
-                  <Link
-                    to={`/articles/${article._id}`}
-                    className="read-more-button"
-                  >
+                  <Link to={`/articles/${article._id}`} className="read-more-button">
                     Read More
                   </Link>
                 </div>

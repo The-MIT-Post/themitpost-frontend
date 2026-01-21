@@ -8,27 +8,27 @@ import ArticlesList from "./ArticlesList";
 import Footer from "./Footer";
 import RotatingCircle from "./RotatingCircle";
 
-const HomePage = ({ articles }) => {
-	return (
-		<>
-			<RotatingCircle />
-			<Navbar />
-			<div className="app-container">
-				<Hero />
-				<Categories />
-				<div className="not-hero">
-					<div className="dabba-left-parent">
-						<DabbaLeft />
-					</div>
-					<ArticlesList articles={articles} />
-					<div className="dabba-right-parent">
-						<DabbaRight />
-					</div>
-				</div>
-			</div>
-			<Footer />
-		</>
-	);
+const HomePage = ({ articles, total }) => {
+  return (
+    <>
+      <RotatingCircle />
+      <Navbar />
+      <div className="app-container">
+        <Hero />
+        <Categories />
+        <div className="not-hero">
+          <div className="dabba-left-parent">
+            <DabbaLeft />
+          </div>
+          <ArticlesList articles={articles} total={total} />
+          <div className="dabba-right-parent">
+            <DabbaRight />
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default HomePage;

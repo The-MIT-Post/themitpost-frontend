@@ -108,8 +108,32 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.article-content p:has(img) {
-  padding-left: 12vw;
+.article-content .hidden-img {
+  display: none;
+}
+
+.embed-youtube {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: 4vh auto;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+}
+
+.spotify-iframe {
+  display: block;
+  width: 90%;
+  margin: auto;
+  height: 90px;
+}
+
+.youtube-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .article-content p {
@@ -141,19 +165,21 @@
   justify-content: space-between;
 }
 
-.next-prev-container button {
+.next-prev-container a {
+  text-align: center;
   background: none;
-  /* border: 1.5px solid gray; */
   border: none;
   color: white;
   background-color: #f06739;
-  cursor: pointer;
   font-size: min(0.75rem, 2.6vw);
-  width: 11vw;
-  padding: 0.7rem 1.2rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 0.3rem;
   transition: all 0.3s ease-in-out;
   margin: 1rem 1rem 0rem;
+}
+
+.next-prev-container abbr {
+  text-decoration: none;
 }
 
 /* Card styles for suggested articles */

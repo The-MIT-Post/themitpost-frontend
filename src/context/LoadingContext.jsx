@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-const LoadingContext = createContext();
+const LoadingContext = createContext(null);
 
 export function useLoading() {
 	return useContext(LoadingContext);
@@ -9,12 +9,11 @@ export function useLoading() {
 export function LoadingProvider({ children }) {
 	const [loading, setLoading] = useState(false);
 
-	const setLoadingState = (state) => {
-		setLoading(state);
-	};
+	const startLoading = () => setLoading(true);
+  	const stopLoading = () => setLoading(false);
 
 	return (
-		<LoadingContext.Provider value={{ loading, setLoadingState }}>
+		<LoadingContext.Provider value={{ loading, startLoading, stopLoading }}>
 			{children}
 		</LoadingContext.Provider>
 	);

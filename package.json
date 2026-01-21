@@ -21,6 +21,7 @@
     "axios": "^1.8.2",
     "dompurify": "^3.2.4",
     "framer-motion": "^12.6.2",
+    "html-entities": "^2.6.0",
     "html-react-parser": "^5.2.2",
     "npm": "^11.6.4",
     "pdfjs-dist": "^5.4.449",
