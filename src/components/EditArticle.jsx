@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Tiptap from "../rich_editor/Tiptap";
+const Tiptap = lazy(() => import("../rich_editor/Tiptap"));
 import "./AdminDashboard.css";
 
 function getNewSummary(text, max = 350) {
@@ -46,9 +46,7 @@ const EditArticle = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/articles/${id}`
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`);
         if (!response.ok) throw new Error("Failed to fetch article");
 
         const data = await response.json();
@@ -96,24 +94,21 @@ const EditArticle = () => {
     const post_name = updatePostName(formData.title);
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/articles/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${currentUser?.token}`,
-          },
-          body: JSON.stringify({
-            ...article,
-            ...formData,
-            summary,
-            post_name,
-            post_date: new Date(formData.post_date).toISOString(),
-            post_modified: new Date().toISOString(),
-          }),
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+        body: JSON.stringify({
+          ...article,
+          ...formData,
+          summary,
+          post_name,
+          post_date: new Date(formData.post_date).toISOString(),
+          post_modified: new Date().toISOString(),
+        }),
+      });
 
       if (!response.ok) throw new Error("Failed to update article");
 
@@ -125,8 +120,7 @@ const EditArticle = () => {
 
   if (isLoading) return <div className="notification">Loading article...</div>;
   if (error) return <div className="notification error">Error: {error}</div>;
-  if (!article)
-    return <div className="notification error">Article not found</div>;
+  if (!article) return <div className="notification error">Article not found</div>;
 
   return (
     <div>
@@ -185,8 +179,7 @@ const EditArticle = () => {
               className="input"
               name="category"
               value={formData.category}
-              onChange={handleChange}
-            >
+              onChange={handleChange}>
               <option>Campus</option>
               <option>Campus → Revels</option>
               <option>Campus → TechTatva</option>
@@ -222,10 +215,9 @@ const EditArticle = () => {
 
           <div className="formGroup">
             <label>Content</label>
-            <Tiptap
-              content={formData.content}
-              setContent={handleContentChange}
-            />
+            <Suspense fallback={<div>Loading editor…</div>}>
+              <Tiptap content={formData.content} setContent={handleContentChange} />
+            </Suspense>
           </div>
 
           <button type="submit" disabled={!isChanged} className="submitButton">

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Tiptap from "../rich_editor/Tiptap";
+import React, { useState, lazy, Suspense } from "react";
+const Tiptap = lazy(() => import("../rich_editor/Tiptap"));
 import "./AdminDashboard.css";
 import { useAuth } from "../context/AuthContext";
 
@@ -69,24 +69,21 @@ const AdminDashboard = () => {
       .filter(Boolean);
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/articles`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${currentUser.token}`,
-          },
-          body: JSON.stringify({
-            ...articleData,
-            tags: tagsArray,
-            summary,
-            post_date: now,
-            post_modified: now,
-            views: 0,
-          }),
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+        body: JSON.stringify({
+          ...articleData,
+          tags: tagsArray,
+          summary,
+          post_date: now,
+          post_modified: now,
+          views: 0,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -117,10 +114,7 @@ const AdminDashboard = () => {
       <div className="formCard">
         {submitMessage && (
           <div
-            className={`notification ${
-              submitMessage.includes("success") ? "success" : "error"
-            }`}
-          >
+            className={`notification ${submitMessage.includes("success") ? "success" : "error"}`}>
             {submitMessage}
           </div>
         )}
@@ -145,8 +139,7 @@ const AdminDashboard = () => {
                 name="category"
                 value={articleData.category}
                 onChange={handleChange}
-                required
-              >
+                required>
                 <option value="">Select category</option>
                 <option>Campus</option>
                 <option>Campus → Revels</option>
@@ -201,17 +194,12 @@ const AdminDashboard = () => {
 
           <div className="formGroup">
             <label>Content*</label>
-            <Tiptap
-              content={articleData.content}
-              setContent={handleContentChange}
-            />
+            <Suspense fallback={<div>Loading editor…</div>}>
+              <Tiptap content={articleData.content} setContent={handleContentChange} />
+            </Suspense>
           </div>
 
-          <button
-            type="submit"
-            className="submitButton"
-            disabled={isSubmitting}
-          >
+          <button type="submit" className="submitButton" disabled={isSubmitting}>
             {isSubmitting ? "Creating..." : "Create Article"}
           </button>
         </form>
