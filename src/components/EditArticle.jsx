@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-const Tiptap = lazy(() => import("../rich_editor/Tiptap"));
+const RichEditor = lazy(() => import("../rich_editor/RichEditor"));
 import "./AdminDashboard.css";
 
 function getNewSummary(text, max = 350) {
@@ -31,7 +31,7 @@ const EditArticle = () => {
   const [formData, setFormData] = useState({
     title: "",
     // creator: "",
-    // creator_name: "",
+    creator_name: "",
     post_date: "",
     category: "",
     tags: [],
@@ -55,8 +55,8 @@ const EditArticle = () => {
         setFormData({
           title: data.title,
           // creator: data.creator,
-          // creator_name: data.creator_name || "",
-          post_date: new Date(data.post_date).toISOString().split("T")[0],
+          creator_name: data.creator_name || "",
+          createdAt: new Date(data.createdAt).toISOString().split("T")[0],
           category: data.category,
           tags: data.tags || [],
           content: data.content,
@@ -139,18 +139,7 @@ const EditArticle = () => {
             />
           </div>
 
-          {/* <div className="formGroup">
-            <label>Author Username</label>
-            <input
-              className="input"
-              name="creator"
-              value={formData.creator}
-              onChange={handleChange}
-              required
-            />
-          </div> */}
-
-          {/* <div className="formGroup">
+          <div className="formGroup">
             <label>Author Name</label>
             <input
               className="input"
@@ -159,19 +148,19 @@ const EditArticle = () => {
               onChange={handleChange}
               required
             />
-          </div> */}
+          </div>
 
-          <div className="formGroup">
+          {/* <div className="formGroup">
             <label>Post Date</label>
             <input
               className="input"
               type="date"
-              name="post_date"
-              value={formData.post_date}
+              name="createdAt"
+              value={formData.createdAt}
               onChange={handleChange}
               required
             />
-          </div>
+          </div> */}
 
           <div className="formGroup">
             <label>Category</label>
@@ -216,7 +205,7 @@ const EditArticle = () => {
           <div className="formGroup">
             <label>Content</label>
             <Suspense fallback={<div>Loading editor…</div>}>
-              <Tiptap content={formData.content} setContent={handleContentChange} />
+              <RichEditor content={formData.content} setContent={handleContentChange} />
             </Suspense>
           </div>
 

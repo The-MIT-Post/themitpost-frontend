@@ -2,36 +2,23 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./AdminArticlesList.css";
 import { useAuth } from "../context/AuthContext";
+import Pagination from "./Pagination";
 
-const AdminArticlesList = ({ articles, onDelete }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const AdminArticlesList = ({ articles, total }) => {
   const [deletingId, setDeletingId] = useState(null);
-  const articlesPerPage = 10;
   const { currentUser } = useAuth();
 
-  const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articles.slice(
-    indexOfFirstArticle,
-    indexOfLastArticle
-  );
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
-
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this article?"))
-      return;
+    if (!window.confirm("Are you sure you want to delete this article?")) return;
 
     setDeletingId(id);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/articles/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${currentUser?.token}`,
-          },
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+      });
 
       if (!response.ok) throw new Error("Failed to delete article");
 
@@ -59,30 +46,23 @@ const AdminArticlesList = ({ articles, onDelete }) => {
             </tr>
           </thead>
           <tbody>
-            {currentArticles.map((article) => (
+            {articles.map((article) => (
               <tr key={article._id}>
                 <td>
-                  <Link
-                    to={`/articles/${article._id}`}
-                    className="articleTitle"
-                  >
+                  <Link to={`/articles/${article._id}`} className="articleTitle">
                     {article.title}
                   </Link>
                 </td>
                 <td>{article.category}</td>
-                <td>{new Date(article.pubDate).toLocaleDateString()}</td>
+                <td>{new Date(article.createdAt).toLocaleDateString()}</td>
                 <td className="actions">
-                  <Link
-                    to={`/admin/edit/${article._id}`}
-                    className="editButton"
-                  >
+                  <Link to={`/admin/edit/${article._id}`} className="editButton">
                     Edit
                   </Link>
                   <button
                     onClick={() => handleDelete(article._id)}
                     disabled={deletingId === article._id}
-                    className="deleteButton"
-                  >
+                    className="deleteButton">
                     {deletingId === article._id ? "Deleting..." : "Delete"}
                   </button>
                 </td>
@@ -98,29 +78,7 @@ const AdminArticlesList = ({ articles, onDelete }) => {
         )}
       </div>
 
-      {totalPages > 1 && (
-        <div className="pagination">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
-
-          <button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
-      )}
+      <Pagination total={total} />
     </>
   );
 };

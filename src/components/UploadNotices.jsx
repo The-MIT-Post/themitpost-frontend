@@ -57,9 +57,7 @@ const UploadNotices = () => {
 
       const newFile = { name: renamedName, data: base64Data };
 
-      setMessage(
-        `Notice "${renamedName}" uploaded (feature will be enabled later)`
-      );
+      setMessage(`Notice "${renamedName}" uploaded (feature will be enabled later)`);
 
       setTitle("");
       setFile(null);
@@ -89,12 +87,7 @@ const UploadNotices = () => {
 
         <div className="form-group">
           <label htmlFor="file">Select File:</label>
-          <input
-            type="file"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            required
-          />
+          <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
         </div>
 
         <button type="submit" className="btn-submit">
@@ -107,7 +100,7 @@ const UploadNotices = () => {
           <h3>Uploaded Notices:</h3>
           <ul>
             {uploadedFiles.map((f, index) => (
-              <li key={index} className="notice-item">
+              <li key={index} className="admin-notice-item">
                 <a href={f.url} target="_blank">
                   {f.name
                     .replace(/\.[^/.]+$/, "")
@@ -115,9 +108,7 @@ const UploadNotices = () => {
                     .replace(/-/g, " ")}
                 </a>
 
-                <button className="delete-btn" disabled>
-                  Delete
-                </button>
+                <button className="delete-btn">Delete</button>
               </li>
             ))}
           </ul>

@@ -63,6 +63,7 @@
 
 .uploaded-files h3 {
   color: #e6e6e6;
+  padding-bottom: 1rem;
 }
 
 .uploaded-files ul {
@@ -89,15 +90,29 @@
 }
 
 .uploaded-files .delete-btn {
-  color: #ff0000;
-  padding: 0.5rem;
-  border-radius: 0.2rem;
-  background-color: #ffd2d2;
-  transition: background-color 0.3s ease-in-out;
-  border: none;
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #f87171;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #f87171;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .uploaded-files .delete-btn:hover {
-  background-color: rgb(255, 153, 153);
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+.uploaded-files .delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-notice-item {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }

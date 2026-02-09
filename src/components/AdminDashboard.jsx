@@ -1,5 +1,5 @@
 import React, { useState, lazy, Suspense } from "react";
-const Tiptap = lazy(() => import("../rich_editor/Tiptap"));
+const RichEditor = lazy(() => import("../rich_editor/RichEditor"));
 import "./AdminDashboard.css";
 import { useAuth } from "../context/AuthContext";
 
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   const [articleData, setArticleData] = useState({
     title: "",
     // creator: "",
-    // creator_name: "",
+    creator_name: "",
     category: "",
     content: "",
     content_text: "",
@@ -78,9 +78,9 @@ const AdminDashboard = () => {
         body: JSON.stringify({
           ...articleData,
           tags: tagsArray,
-          summary,
-          post_date: now,
-          post_modified: now,
+          summary: summary,
+          createdAt: now,
+          updatedAt: now,
           views: 0,
         }),
       });
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
       setArticleData({
         title: "",
         // creator: "",
-        // creator_name: "",
+        creator_name: "",
         category: "",
         content: "",
         content_text: "",
@@ -157,8 +157,8 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          {/* <div className="grid-2">
-            <div className="formGroup">
+          <div className="grid-2">
+            {/* <div className="formGroup">
               <label>Author Username*</label>
               <input
                 className="input"
@@ -167,7 +167,7 @@ const AdminDashboard = () => {
                 onChange={handleChange}
                 required
               />
-            </div>
+            </div> */}
 
             <div className="formGroup">
               <label>Author Name*</label>
@@ -179,7 +179,7 @@ const AdminDashboard = () => {
                 required
               />
             </div>
-          </div> */}
+          </div>
 
           <div className="formGroup">
             <label>Tags (comma separated)*</label>
@@ -195,7 +195,7 @@ const AdminDashboard = () => {
           <div className="formGroup">
             <label>Content*</label>
             <Suspense fallback={<div>Loading editor…</div>}>
-              <Tiptap content={articleData.content} setContent={handleContentChange} />
+              <RichEditor content={articleData.content} setContent={handleContentChange} />
             </Suspense>
           </div>
 

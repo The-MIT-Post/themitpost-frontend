@@ -4,7 +4,7 @@ import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import { useEffect } from "react";
 
-const Tiptap = ({ content, setContent }) => {
+const RichEditor = ({ content, setContent }) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -101,4 +101,4 @@ const Tiptap = ({ content, setContent }) => {
   );
 };
 
-export default Tiptap;
+export default RichEditor;
