@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./AdminArticlesList.css";
 import { useAuth } from "../context/AuthContext";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 
 const AdminArticlesList = ({ articles, total }) => {
   const [deletingId, setDeletingId] = useState(null);

@@ -1,11 +1,11 @@
 // components/BoardPage.js
 import React from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import RotatingCircle from "./RotatingCircle";
 import BoardMembers from "./BoardMembers";
 import SubboardMembers from "./SubboardMembers";
-import BackButton from "./BackButton";
+import BackButton from "../components/BackButton";
 import "./BoardPage.css";
 
 const BoardPage = () => {

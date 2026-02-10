@@ -1,8 +1,8 @@
 // components/ArticlesList.js
 import { Link } from "react-router-dom";
 import { decode } from "html-entities";
-import ResetFilter from "./ResetFilter";
-import Pagination from "./Pagination";
+import ResetFilter from "../components/ResetFilter";
+import Pagination from "../components/Pagination";
 
 const ArticlesList = ({ articles, total }) => {
   const fallbackImage = "/test.jpg";

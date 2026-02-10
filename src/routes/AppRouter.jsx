@@ -1,22 +1,22 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../components/HomePage";
-import ArticleDetail from "../components/ArticleDetail";
-import AboutUs from "../components/AboutUs";
-import FromTheEditorsDesk from "../components/FromTheEditorsDesk";
-import BoardPage from "../components/BoardPage";
-import BoardMembers from "../components/BoardMembers";
-import SubboardMembers from "../components/SubboardMembers";
-import Notices from "../components/Notices";
-import Login from "../components/Login";
+import HomePage from "../reader/HomePage";
+import ArticleDetail from "../reader/ArticleDetail";
+import AboutUs from "../reader/AboutUs";
+import FromTheEditorsDesk from "../reader/FromTheEditorsDesk";
+import BoardPage from "../reader/BoardPage";
+import BoardMembers from "../reader/BoardMembers";
+import SubboardMembers from "../reader/SubboardMembers";
+import Notices from "../reader/Notices";
+import Login from "../auth/Login";
 
-import AdminLayout from "../components/AdminLayout";
-import AdminDashboard from "../components/AdminDashboard";
-import AdminArticlesList from "../components/AdminArticlesList";
-import EditArticle from "../components/EditArticle";
+import AdminLayout from "../admin/AdminLayout";
+import AdminDashboard from "../admin/AdminDashboard";
+import AdminArticlesList from "../admin/AdminArticlesList";
+import EditArticle from "../admin/EditArticle";
 import UploadNotices from "../components/UploadNotices";
-import AdminStatistics from "../components/AdminStatistics";
-import ProtectedRoute from "../components/ProtectedRoute";
+import AdminStatistics from "../admin/AdminStatistics";
+import ProtectedRoute from "../auth/ProtectedRoute";
 
 const AppRouter = ({ articles, total }) => {
   return (

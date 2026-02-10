@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 import Hero from "./Hero";
 import Categories from "./Categories";
 import DabbaLeft from "./DabbaLeft";
 import DabbaRight from "./DabbaRight";
 import ArticlesList from "./ArticlesList";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import RotatingCircle from "./RotatingCircle";
 
 const HomePage = ({ articles, total }) => {

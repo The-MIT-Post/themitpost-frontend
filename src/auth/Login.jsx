@@ -4,8 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { FiUser, FiLock, FiAlertCircle } from "react-icons/fi";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import RotatingCircle from "./RotatingCircle";
-import BackButton from "./BackButton";
+import RotatingCircle from "../reader/RotatingCircle";
+import BackButton from "../components/BackButton";
 import "./Login.css";
 
 const Login = () => {
@@ -73,11 +73,7 @@ const Login = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="login-button"
-                  disabled={loading}
-                >
+                <button type="submit" className="login-button" disabled={loading}>
                   {loading ? "Signing in..." : "Sign In"}
                 </button>
               </form>

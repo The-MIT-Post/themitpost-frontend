@@ -1,13 +1,13 @@
 // components/ArticleDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 import { decode } from "html-entities";
 import RotatingCircle from "./RotatingCircle";
-import BackButton from "./BackButton";
+import BackButton from "../components/BackButton";
 import "./ArticleDetail.css";
 
 const ArticleDetail = ({ articles }) => {

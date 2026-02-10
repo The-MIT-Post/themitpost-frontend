@@ -17,13 +17,13 @@ const Pagination = ({ total }) => {
   const getPaginationItems = () => {
     if (totalPages <= 1) return [1];
     const items = [1, 2];
-    if (currentPage > 4) items.push("left-ellipsis");
+    if (currentPage > 4) items.push("ellipsis");
     items.push(
       ...[currentPage - 1, currentPage, currentPage + 1].filter(
         (p) => p >= 3 && p <= totalPages - 2
       )
     );
-    if (currentPage < totalPages - 3) items.push("right-ellipsis");
+    if (currentPage < totalPages - 3) items.push("ellipsis");
     if (totalPages > 2) items.push(totalPages - 1, totalPages);
     return items;
   };

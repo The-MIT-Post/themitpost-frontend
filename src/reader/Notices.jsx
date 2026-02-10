@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import RotatingCircle from "./RotatingCircle";
-import BackButton from "./BackButton";
+import BackButton from "../components/BackButton";
 import "./Notices.css";
 
 const Notices = () => {
